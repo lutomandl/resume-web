@@ -1,0 +1,12 @@
+@use '../../node_modules/normalize.css/normalize.css';
+@use '../../node_modules/the-new-css-reset';
+
+@use 'config';
+@use 'common';
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: config.$bg-color;
+}
