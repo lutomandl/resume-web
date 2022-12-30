@@ -1,7 +1,13 @@
-import './styles/styles.scss';
+import Header from './components/Header';
+import Page from './components/Page';
 
 function App() {
-  return <p>hi</p>;
+  return (
+    <>
+      <Header />
+      <Page />
+    </>
+  );
 }
 
 export default App;

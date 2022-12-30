@@ -1,12 +1,20 @@
-@use '../../node_modules/normalize.css/normalize.css';
 @use '../../node_modules/the-new-css-reset';
+@use '../../node_modules/normalize.css';
 
 @use 'config';
 @use 'common';
+@use 'header';
+@use 'menu';
+@use 'page';
+@use 'heading';
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: config.$bg-color;
+  font-family: config.$font-paragraphs;
+  color: config.$text-color;
+  font-size: config.$font-base-size;
+  font-weight: 600;
 }
