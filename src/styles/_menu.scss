@@ -1,12 +1,20 @@
+@use 'config';
+
 .menu__icon {
   background-color: black;
   border-radius: 50%;
-  height: 6rem;
-  width: 6rem;
+
+  height: config.$menu-icon-size-xs;
+  width: config.$menu-icon-size-xs;
 
   &:hover {
     background-color: transparent;
-    border: 0.5rem solid black;
+    border: 1vmin solid black;
     cursor: pointer;
+  }
+
+  @media (min-width: config.$breakpoint-md) {
+    height: config.$menu-icon-size-md;
+    width: config.$menu-icon-size-md;
   }
 }

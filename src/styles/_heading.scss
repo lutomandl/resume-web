@@ -14,11 +14,11 @@ h3 {
 
 .heading {
   font-family: config.$font-headings;
-  font-size: 20rem;
+  font-size: (min(33vh, 25vw));
+  letter-spacing: -0.5vmin;
+  width: calc(100% - 0.5vmin);
   line-height: 0.8;
-  letter-spacing: -0.35rem;
   margin: 0;
-  width: calc(100% - 0.35rem);
 
   &--left {
     text-align: left;
