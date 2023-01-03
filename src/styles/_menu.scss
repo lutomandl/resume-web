@@ -1,20 +1,78 @@
 @use 'config';
+@use 'heading';
 
-.menu__icon {
-  background-color: black;
-  border-radius: 50%;
-
-  height: config.$menu-icon-size-xs;
-  width: config.$menu-icon-size-xs;
-
-  &:hover {
-    background-color: transparent;
-    border: 1vmin solid black;
-    cursor: pointer;
-  }
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: config.$header-padding-xs;
+  height: 100%;
 
   @media (min-width: config.$breakpoint-md) {
-    height: config.$menu-icon-size-md;
-    width: config.$menu-icon-size-md;
+    gap: config.$header-padding-md;
+  }
+
+  &__icon {
+    background-color: black;
+    border-radius: 50%;
+    height: config.$menu-icon-size-xs;
+    width: config.$menu-icon-size-xs;
+
+    &--open {
+      background-color: transparent;
+      border: 1vmin solid black;
+      cursor: pointer;
+    }
+
+    @media (min-width: config.$breakpoint-md) {
+      height: config.$menu-icon-size-md;
+      width: config.$menu-icon-size-md;
+    }
+  }
+
+  &__list {
+    display: flex;
+    gap: 0.4vmin;
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    transform: translateX(-30vw);
+    opacity: 0;
+
+    &--open {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  &__item {
+    @extend .heading;
+    letter-spacing: -0.2vmin;
+    font-size: 10vmin;
+    width: auto;
+    height: calc(10vmin + 0.5vmin);
+    position: relative;
+    top: 1vmin;
+
+    &::after {
+      content: '';
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 0.5vmin;
+      background-color: black;
+      transition: height 0.3s ease-in-out;
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      &::after {
+        height: 0.7vmin;
+      }
+    }
+
+    &__icon {
+      width: 8vmin;
+      height: 8vmin;
+    }
   }
 }

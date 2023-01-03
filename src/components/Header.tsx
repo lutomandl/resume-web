@@ -2,8 +2,8 @@ import Menu from './Menu';
 
 export default function Header() {
   return (
-    <div className="header">
+    <header className="header">
       <Menu />
-    </div>
+    </header>
   );
 }
