@@ -2,14 +2,30 @@
 @use 'heading';
 
 .menu {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: config.$header-padding-xs;
-  height: 100%;
+  padding: config.$header-padding-xs;
+  height: config.$header-height-xs;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: config.$bg-color;
 
   @media (min-width: config.$breakpoint-md) {
-    gap: config.$header-padding-md;
+    padding: config.$header-padding-md;
+    height: config.$header-height-md;
+  }
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: config.$header-padding-xs;
+    height: 100%;
+
+    @media (min-width: config.$breakpoint-md) {
+      gap: config.$header-padding-md;
+    }
   }
 
   &__icon {
@@ -33,7 +49,7 @@
   &__list {
     display: flex;
     gap: 0.4vmin;
-    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
     transform: translateX(-30vw);
     opacity: 0;
 

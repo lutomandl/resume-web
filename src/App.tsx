@@ -1,7 +1,6 @@
 import { useLayoutEffect } from 'react';
 import { useLocation, useRoutes } from 'react-router-dom';
-import Header from './components/Header';
-import Page from './components/Page';
+import Menu from './components/Menu';
 import routes from './routes';
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Menu />
       {element}
     </>
   );

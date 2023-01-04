@@ -3,50 +3,67 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Menu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isFixedOpen, setIsFixedOpen] = useState(false);
+  const [isHoverOpen, setIsHoverOpen] = useState(false);
 
   const handleMouseEnter = () => {
-    setIsOpen(true);
+    setIsHoverOpen(true);
   };
 
   const handleMouseLeave = () => {
-    setIsOpen(false);
+    setIsHoverOpen(false);
+  };
+
+  const handleMenuIconClick = () => {
+    setIsFixedOpen(!isFixedOpen);
+  };
+
+  const handleMenuItemClick = () => {
+    setIsFixedOpen(false);
   };
 
   return (
-    <div
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className={clsx('menu', {
-        'menu--open': isOpen,
-      })}
-    >
+    <header className="menu">
       <div
-        className={clsx('menu__icon', {
-          'menu__icon--open': isOpen,
-        })}
-      ></div>
-      <nav
-        className={clsx('menu__list', {
-          'menu__list--open': isOpen,
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className={clsx('menu__container', {
+          'menu__container--open': isFixedOpen || isHoverOpen,
         })}
       >
-        <Link className="menu__item" to="/">
-          About
-        </Link>
-        <Link className="menu__item" to="/">
-          Projects
-        </Link>
-        <Link className="menu__item" to="/">
-          Exeprience
-        </Link>
-        <Link className="menu__item" to="/">
-          Contact
-        </Link>
-        <Link className="menu__item" to="/">
-          CV
-        </Link>
-      </nav>
-    </div>
+        <div
+          className={clsx('menu__icon', {
+            'menu__icon--open': isFixedOpen || isHoverOpen,
+          })}
+          onClick={handleMenuIconClick}
+        ></div>
+        <nav
+          className={clsx('menu__list', {
+            'menu__list--open': isFixedOpen || isHoverOpen,
+          })}
+        >
+          <Link onClick={handleMenuItemClick} className="menu__item" to="/">
+            About
+          </Link>
+          <Link onClick={handleMenuItemClick} className="menu__item" to="/">
+            Projects
+          </Link>
+          <Link onClick={handleMenuItemClick} className="menu__item" to="/">
+            Exeprience
+          </Link>
+          <Link onClick={handleMenuItemClick} className="menu__item" to="/">
+            Contact
+          </Link>
+          <a
+            onClick={handleMenuItemClick}
+            href="cv.pdf"
+            target="_blank"
+            className="menu__item"
+          >
+            CV
+          </a>
+        </nav>
+      </div>
+    </header>
   );
 }
