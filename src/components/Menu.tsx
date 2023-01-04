@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import useClickOutsideListener from '../hooks/useClickOutsideListener';
 
 export default function Menu() {
   const [isFixedOpen, setIsFixedOpen] = useState(false);
@@ -16,20 +17,33 @@ export default function Menu() {
 
   const handleMenuIconClick = () => {
     setIsFixedOpen(!isFixedOpen);
+    setIsHoverOpen(!isHoverOpen);
   };
 
   const handleMenuItemClick = () => {
     setIsFixedOpen(false);
+    setIsHoverOpen(false);
   };
 
+  const handleClickOutside = () => {
+    setIsFixedOpen(false);
+    setIsHoverOpen(false);
+  };
+
+  const wrapperRef = useRef(null);
+  useClickOutsideListener(wrapperRef, handleClickOutside);
+
   return (
-    <header className="menu">
+    <header
+      className={clsx('menu', {
+        'menu--open': isFixedOpen || isHoverOpen,
+      })}
+      ref={wrapperRef}
+    >
       <div
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={clsx('menu__container', {
-          'menu__container--open': isFixedOpen || isHoverOpen,
-        })}
+        className="menu__container"
       >
         <div
           className={clsx('menu__icon', {

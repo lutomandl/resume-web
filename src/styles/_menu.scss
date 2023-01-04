@@ -10,23 +10,49 @@
   width: 100%;
   z-index: 100;
   background-color: config.$bg-color;
+  transition: height 0.8s ease-out;
 
   @media (min-width: config.$breakpoint-md) {
     padding: config.$header-padding-md;
     height: config.$header-height-md;
   }
 
+  &--open {
+    height: 100vh;
+
+    @media (min-width: config.$breakpoint-md) {
+      height: config.$header-height-md;
+    }
+  }
+
   &__container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     gap: config.$header-padding-xs;
     height: 100%;
 
     @media (min-width: config.$breakpoint-md) {
       gap: config.$header-padding-md;
+      align-items: center;
     }
   }
+
+  // &__overlay {
+  //   position: fixed;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 100vh;
+  //   background-color: config.$bg-color;
+  //   z-index: 99;
+  //   transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+  //   transform: translateY(-100vh);
+  //   opacity: 0;
+  //   &--open {
+  //     opacity: 1;
+  //   }
+  // }
 
   &__icon {
     background-color: black;
@@ -36,11 +62,12 @@
 
     &--open {
       background-color: transparent;
-      border: 1vmin solid black;
+      border: 1.5vmin solid black;
       cursor: pointer;
     }
 
     @media (min-width: config.$breakpoint-md) {
+      border-width: 1vmin;
       height: config.$menu-icon-size-md;
       width: config.$menu-icon-size-md;
     }
@@ -48,10 +75,17 @@
 
   &__list {
     display: flex;
+    flex-direction: column;
     gap: 0.4vmin;
     transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-    transform: translateX(-30vw);
+    transform: translateY(-100vh);
     opacity: 0;
+
+    @media (min-width: config.$breakpoint-md) {
+      flex-direction: row;
+      transform: translateX(-30vw);
+      opacity: 0;
+    }
 
     &--open {
       transform: translateX(0);
