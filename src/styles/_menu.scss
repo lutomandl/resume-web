@@ -96,11 +96,16 @@
   &__item {
     @extend .heading;
     letter-spacing: -0.2vmin;
-    font-size: 10vmin;
-    width: auto;
-    height: calc(10vmin + 0.5vmin);
+    width: fit-content;
+    height: auto;
+    font-size: 20vmin;
     position: relative;
     top: 1vmin;
+
+    @media (min-width: config.$breakpoint-md) {
+      height: calc(10vmin + 0.5vmin);
+      font-size: 10vmin;
+    }
 
     &::after {
       content: '';
