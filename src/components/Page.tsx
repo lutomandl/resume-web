@@ -1,38 +1,26 @@
-import Heading from './Heading';
-import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
+import About from './routes/About';
+import Contact from './routes/Contact';
+import Experience from './routes/Experience';
+import Home from './routes/Home';
+import Projects from './routes/Projects';
 
 export default function Page() {
+  const location = useLocation();
+
   return (
-    <article className="page">
-      <motion.div
-        className="motion-div"
-        animate={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: '-100vw' }}
-        transition={{ ease: 'anticipate', duration: 3 }}
-        exit={{ opacity: 0, x: '-100vw' }}
-      >
-        <Heading align="right">LUBOS TOMANDL</Heading>
-      </motion.div>
-      <motion.div
-        className="motion-div"
-        animate={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: '100vw' }}
-        transition={{ ease: 'anticipate', delay: 1, duration: 3 }}
-        exit={{ opacity: 0, x: '100vw' }}
-      >
-        <Heading element="h2">FRONTEND DEVELOPER</Heading>
-      </motion.div>
-      <motion.div
-        className="motion-div"
-        animate={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: '-100vw' }}
-        transition={{ ease: 'anticipate', delay: 2, duration: 3 }}
-        exit={{ opacity: 0, x: '-100vw' }}
-      >
-        <Heading element="h3" align="right">
-          BERLIN, DE
-        </Heading>
-      </motion.div>
-    </article>
+    <main className="page">
+      <AnimatePresence>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </AnimatePresence>
+    </main>
   );
 }

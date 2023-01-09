@@ -1,10 +1,11 @@
 import { useLayoutEffect } from 'react';
 import { useLocation, useRoutes } from 'react-router-dom';
 import Menu from './components/Menu';
-import routes from './routes';
+import Page from './components/Page';
+// import routes from './routes';
 
 function App() {
-  const element = useRoutes(routes);
+  // const element = useRoutes(routes);
   const { pathname } = useLocation();
 
   useLayoutEffect(() => {
@@ -17,7 +18,7 @@ function App() {
   return (
     <>
       <Menu />
-      {element}
+      <Page />
     </>
   );
 }

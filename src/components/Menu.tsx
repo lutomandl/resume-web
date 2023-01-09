@@ -1,33 +1,26 @@
 import clsx from 'clsx';
+import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
 
 export default function Menu() {
-  const [isFixedOpen, setIsFixedOpen] = useState(false);
-  const [isHoverOpen, setIsHoverOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseEnter = () => {
-    setIsHoverOpen(true);
+    setIsOpen(true);
   };
 
   const handleMouseLeave = () => {
-    setIsHoverOpen(false);
-  };
-
-  const handleMenuIconClick = () => {
-    setIsFixedOpen(!isFixedOpen);
-    setIsHoverOpen(!isHoverOpen);
+    setIsOpen(false);
   };
 
   const handleMenuItemClick = () => {
-    setIsFixedOpen(false);
-    setIsHoverOpen(false);
+    setIsOpen(false);
   };
 
   const handleClickOutside = () => {
-    setIsFixedOpen(false);
-    setIsHoverOpen(false);
+    setIsOpen(false);
   };
 
   const wrapperRef = useRef(null);
@@ -36,7 +29,7 @@ export default function Menu() {
   return (
     <header
       className={clsx('menu', {
-        'menu--open': isFixedOpen || isHoverOpen,
+        'menu--open': isOpen,
       })}
       ref={wrapperRef}
     >
@@ -45,32 +38,55 @@ export default function Menu() {
         onMouseLeave={handleMouseLeave}
         className="menu__container"
       >
-        <div
-          className={clsx('menu__icon', {
-            'menu__icon--open': isFixedOpen || isHoverOpen,
-          })}
-          onClick={handleMenuIconClick}
-        ></div>
+        <motion.div
+          animate={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          transition={{ ease: 'anticipate', delay: 4, duration: 2 }}
+        >
+          <Link onClick={handleMenuItemClick} to="/">
+            <div
+              className={clsx('menu__icon', {
+                'menu__icon--open': isOpen,
+              })}
+            ></div>
+          </Link>
+        </motion.div>
         <nav
           className={clsx('menu__list', {
-            'menu__list--open': isFixedOpen || isHoverOpen,
+            'menu__list--open': isOpen,
           })}
         >
-          <Link onClick={handleMenuItemClick} className="menu__item" to="/">
+          <Link
+            onClick={handleMenuItemClick}
+            className="menu__item"
+            to="/about"
+          >
             About
           </Link>
-          <Link onClick={handleMenuItemClick} className="menu__item" to="/">
+          <Link
+            onClick={handleMenuItemClick}
+            className="menu__item"
+            to="/projects"
+          >
             Projects
           </Link>
-          <Link onClick={handleMenuItemClick} className="menu__item" to="/">
+          <Link
+            onClick={handleMenuItemClick}
+            className="menu__item"
+            to="/experience"
+          >
             Exeprience
           </Link>
-          <Link onClick={handleMenuItemClick} className="menu__item" to="/">
+          <Link
+            onClick={handleMenuItemClick}
+            className="menu__item"
+            to="/contact"
+          >
             Contact
           </Link>
           <a
             onClick={handleMenuItemClick}
-            href="cv.pdf"
+            href="/public/assets/CV.pdf"
             target="_blank"
             className="menu__item"
           >
