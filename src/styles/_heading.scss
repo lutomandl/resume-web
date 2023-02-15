@@ -1,0 +1,30 @@
+@use 'config';
+
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 400;
+}
+
+h3 {
+  font-weight: 300;
+}
+
+.heading {
+  font-family: config.$font-headings;
+  font-size: (min(33vh, 25vw));
+  letter-spacing: -0.5vmin;
+  width: calc(100% - 0.5vmin);
+  line-height: 0.8;
+  margin: 0;
+
+  &--left {
+    text-align: left;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}

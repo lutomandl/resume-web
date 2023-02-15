@@ -1,0 +1,18 @@
+@use 'config';
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - #{config.$header-height-xs});
+
+  @media (min-width: config.$breakpoint-md) {
+    top: config.$header-height-md;
+    min-height: calc(100vh - #{config.$header-height-md});
+  }
+
+  &__motionDiv {
+    width: 100%;
+  }
+}

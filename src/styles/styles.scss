@@ -1,0 +1,26 @@
+@use '../../node_modules/the-new-css-reset';
+@use '../../node_modules/normalize.css';
+
+@use 'config';
+
+@use 'about';
+@use 'heading';
+@use 'home';
+@use 'menu';
+@use 'page';
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: config.$bg-color;
+  font-family: config.$font-paragraphs;
+  color: config.$text-color;
+  font-size: config.$font-base-size;
+  font-weight: 700;
+}
+
+a {
+  text-decoration: underline;
+  color: config.$text-color;
+}
