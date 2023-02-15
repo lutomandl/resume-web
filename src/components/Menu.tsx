@@ -15,10 +15,6 @@ export default function Menu() {
     setIsOpen(false);
   };
 
-  const handleMenuItemClick = () => {
-    setIsOpen(false);
-  };
-
   const handleClickOutside = () => {
     setIsOpen(false);
   };
@@ -43,7 +39,7 @@ export default function Menu() {
           initial={{ opacity: 0 }}
           transition={{ ease: 'anticipate', delay: 4, duration: 2 }}
         >
-          <Link onClick={handleMenuItemClick} to="/">
+          <Link to="/">
             <div
               className={clsx('menu__icon', {
                 'menu__icon--open': isOpen,
@@ -56,40 +52,19 @@ export default function Menu() {
             'menu__list--open': isOpen,
           })}
         >
-          <Link
-            onClick={handleMenuItemClick}
-            className="menu__item"
-            to="/about"
-          >
+          <Link className="menu__item" to="/about">
             About
           </Link>
-          <Link
-            onClick={handleMenuItemClick}
-            className="menu__item"
-            to="/projects"
-          >
+          <Link className="menu__item" to="/projects">
             Projects
           </Link>
-          <Link
-            onClick={handleMenuItemClick}
-            className="menu__item"
-            to="/experience"
-          >
+          <Link className="menu__item" to="/experience">
             Exeprience
           </Link>
-          <Link
-            onClick={handleMenuItemClick}
-            className="menu__item"
-            to="/contact"
-          >
+          <Link className="menu__item" to="/contact">
             Contact
           </Link>
-          <a
-            onClick={handleMenuItemClick}
-            href="/public/assets/CV.pdf"
-            target="_blank"
-            className="menu__item"
-          >
+          <a href="/assets/CV.pdf" target="_blank" className="menu__item">
             CV
           </a>
         </nav>

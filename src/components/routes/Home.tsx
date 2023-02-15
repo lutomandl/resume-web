@@ -1,38 +1,28 @@
 import Heading from '../Heading';
-import { motion } from 'framer-motion';
+import InitialAnimation from '../InitialAnimation';
 
 export default function Home() {
   return (
     <section className="home">
-      <motion.div
-        className="home__motion-div"
-        animate={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: '-100vw' }}
-        transition={{ ease: 'anticipate', duration: 3 }}
-        exit={{ opacity: 0, x: '-100vw' }}
-      >
+      <InitialAnimation initialPosition="-100vh" className="home__motionDiv">
         <Heading align="right">LUBOS TOMANDL</Heading>
-      </motion.div>
-      <motion.div
-        className="home__motion-div"
-        animate={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: '100vw' }}
-        transition={{ ease: 'anticipate', delay: 1, duration: 3 }}
-        exit={{ opacity: 0, x: '100vw' }}
+      </InitialAnimation>
+      <InitialAnimation
+        initialPosition="100vh"
+        delay={1}
+        className="home__motionDiv"
       >
         <Heading element="h2">FRONTEND DEVELOPER</Heading>
-      </motion.div>
-      <motion.div
-        className="home__motion-div"
-        animate={{ opacity: 1, x: 0 }}
-        initial={{ opacity: 0, x: '-100vw' }}
-        transition={{ ease: 'anticipate', delay: 2, duration: 3 }}
-        exit={{ opacity: 0, x: '-100vw' }}
+      </InitialAnimation>
+      <InitialAnimation
+        initialPosition="-100vh"
+        delay={2}
+        className="home__motionDiv"
       >
         <Heading element="h3" align="right">
           BERLIN, DE
         </Heading>
-      </motion.div>
+      </InitialAnimation>
     </section>
   );
 }

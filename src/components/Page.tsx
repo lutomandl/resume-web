@@ -5,13 +5,14 @@ import Contact from './routes/Contact';
 import Experience from './routes/Experience';
 import Home from './routes/Home';
 import Projects from './routes/Projects';
+import RouteTransition from './RouteTransition';
 
 export default function Page() {
   const location = useLocation();
 
   return (
     <main className="page">
-      <AnimatePresence>
+      <RouteTransition>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -20,7 +21,7 @@ export default function Page() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
-      </AnimatePresence>
+      </RouteTransition>
     </main>
   );
 }

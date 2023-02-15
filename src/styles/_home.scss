@@ -1,3 +1,5 @@
+@use 'config';
+
 .home {
   display: flex;
   flex-direction: column;
@@ -10,7 +12,7 @@
     min-height: calc(100vh - #{config.$header-height-md});
   }
 
-  &__motion-div {
+  &__motionDiv {
     width: 100%;
   }
 }
