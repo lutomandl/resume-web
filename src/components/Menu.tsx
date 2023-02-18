@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
+import SvgIcon from './icons/SvgIcon';
+import XIcon from './icons/XIcon';
 
 export default function Menu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,14 +39,14 @@ export default function Menu() {
         <motion.div
           animate={{ opacity: 1 }}
           initial={{ opacity: 0 }}
-          transition={{ ease: 'anticipate', delay: 4, duration: 2 }}
+          transition={{ ease: 'anticipate', delay: 3.8, duration: 2 }}
         >
           <Link to="/">
             <div
               className={clsx('menu__icon', {
                 'menu__icon--open': isOpen,
               })}
-            ></div>
+            />
           </Link>
         </motion.div>
         <nav
@@ -67,6 +69,13 @@ export default function Menu() {
           <a href="/assets/CV.pdf" target="_blank" className="menu__item">
             CV
           </a>
+          {isOpen && (
+            <XIcon
+              className="menu__x"
+              size={40}
+              onClick={() => setIsOpen(false)}
+            />
+          )}
         </nav>
       </div>
     </header>

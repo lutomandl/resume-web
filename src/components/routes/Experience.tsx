@@ -2,9 +2,9 @@ import Heading from '../Heading';
 
 export default function Experience() {
   return (
-    <article className="experience">
-      <Heading element="h1">Experience</Heading>
+    <section className="experience">
+      <Heading element="h1">EXPERIENCE</Heading>
       <p>Coming soon...</p>
-    </article>
+    </section>
   );
 }

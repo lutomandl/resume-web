@@ -2,18 +2,22 @@ import Heading from '../Heading';
 
 export default function About() {
   return (
-    <article className="about">
+    <section className="about">
       <Heading element="h1" align="right">
         ABOUT
       </Heading>
-      <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-        ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-        quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-        arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-      </p>
-    </article>
+      <article className="about__text">
+        Hi, I'm Luboš! I'm a frontend engineer based in Berlin, with a passion
+        for building dynamic and user-friendly web applications using React.
+        When I'm not coding, I'm usually indulging in my other interests, like
+        studying theology, playing guitar or bouldering. I'm also a bit of a
+        coffee snob, always on the lookout for the perfect brew. Thanks for
+        stopping by my website, and feel free to get in touch on{' '}
+        <a href="https://www.linkedin.com/in/lubos-tomandl/" target="_blank">
+          LinkedIn
+        </a>
+        .
+      </article>
+    </section>
   );
 }

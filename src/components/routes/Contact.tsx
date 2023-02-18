@@ -2,9 +2,9 @@ import Heading from '../Heading';
 
 export default function Contact() {
   return (
-    <article className="contact">
-      <Heading element="h1">Contact</Heading>
+    <section className="contact">
+      <Heading element="h1">CONTACT</Heading>
       <p>Coming soon...</p>
-    </article>
+    </section>
   );
 }

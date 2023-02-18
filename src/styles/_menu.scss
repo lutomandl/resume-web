@@ -59,7 +59,23 @@
     }
   }
 
+  &__x {
+    position: absolute;
+    height: config.$menu-icon-size-xs;
+    width: config.$menu-icon-size-xs;
+    top: 0;
+    right: 0;
+    height: config.$menu-icon-size-xs;
+    width: config.$menu-icon-size-xs;
+
+    @media (min-width: config.$breakpoint-md) {
+      display: none;
+    }
+  }
+
   &__list {
+    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     gap: 0.4vmin;

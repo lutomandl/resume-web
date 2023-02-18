@@ -2,9 +2,9 @@ import Heading from '../Heading';
 
 export default function Projects() {
   return (
-    <article className="projects">
-      <Heading element="h1">Projects</Heading>
+    <section className="projects">
+      <Heading element="h1">PROJECTS</Heading>
       <p>Coming soon...</p>
-    </article>
+    </section>
   );
 }
