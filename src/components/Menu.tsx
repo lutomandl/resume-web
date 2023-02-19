@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
-import SvgIcon from './icons/SvgIcon';
 import XIcon from './icons/XIcon';
 
 export default function Menu() {

@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 
 interface HeadingProps {
   element?: 'h1' | 'h2' | 'h3';

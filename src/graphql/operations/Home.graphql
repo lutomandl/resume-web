@@ -1,0 +1,11 @@
+query Home {
+  home {
+    data {
+      attributes {
+        name
+        title
+        location
+      }
+    }
+  }
+}
