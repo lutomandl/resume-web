@@ -1,9 +1,13 @@
 import Heading from '../Heading';
 
-export default function Contact() {
+interface CuntactProps {
+  heading: string;
+}
+
+export default function Contact({ heading }: CuntactProps) {
   return (
     <section className="contact">
-      <Heading element="h1">CONTACT</Heading>
+      <Heading element="h1">{heading}</Heading>
       <p>Coming soon...</p>
     </section>
   );

@@ -3,15 +3,9 @@
 
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -19,7 +13,6 @@ export type Scalars = {
   Boolean: boolean;
   Int: number;
   Float: number;
-  Date: any;
   DateTime: any;
   I18NLocaleCode: any;
   JSON: any;
@@ -30,15 +23,16 @@ export type About = {
   __typename?: 'About';
   createdAt: Maybe<Scalars['DateTime']>;
   firstParagraph: Scalars['String'];
-  heading: Scalars['String'];
   image: UploadFileEntityResponse;
   locale: Maybe<Scalars['String']>;
   localizations: Maybe<AboutRelationResponseCollection>;
   publishedAt: Maybe<Scalars['DateTime']>;
+  route: Maybe<RouteEntityResponse>;
   secondParagraph: Scalars['String'];
   thirdParagraph: Scalars['String'];
   updatedAt: Maybe<Scalars['DateTime']>;
 };
+
 
 export type AboutLocalizationsArgs = {
   publicationState?: InputMaybe<PublicationState>;
@@ -57,9 +51,9 @@ export type AboutEntityResponse = {
 
 export type AboutInput = {
   firstParagraph?: InputMaybe<Scalars['String']>;
-  heading?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<Scalars['ID']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
+  route?: InputMaybe<Scalars['ID']>;
   secondParagraph?: InputMaybe<Scalars['String']>;
   thirdParagraph?: InputMaybe<Scalars['String']>;
 };
@@ -93,30 +87,6 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type DateFilterInput = {
-  and?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
-  between?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
-  contains?: InputMaybe<Scalars['Date']>;
-  containsi?: InputMaybe<Scalars['Date']>;
-  endsWith?: InputMaybe<Scalars['Date']>;
-  eq?: InputMaybe<Scalars['Date']>;
-  eqi?: InputMaybe<Scalars['Date']>;
-  gt?: InputMaybe<Scalars['Date']>;
-  gte?: InputMaybe<Scalars['Date']>;
-  in?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
-  lt?: InputMaybe<Scalars['Date']>;
-  lte?: InputMaybe<Scalars['Date']>;
-  ne?: InputMaybe<Scalars['Date']>;
-  not?: InputMaybe<DateFilterInput>;
-  notContains?: InputMaybe<Scalars['Date']>;
-  notContainsi?: InputMaybe<Scalars['Date']>;
-  notIn?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
-  notNull?: InputMaybe<Scalars['Boolean']>;
-  null?: InputMaybe<Scalars['Boolean']>;
-  or?: InputMaybe<Array<InputMaybe<Scalars['Date']>>>;
-  startsWith?: InputMaybe<Scalars['Date']>;
-};
-
 export type DateTimeFilterInput = {
   and?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   between?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
@@ -139,90 +109,6 @@ export type DateTimeFilterInput = {
   null?: InputMaybe<Scalars['Boolean']>;
   or?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
   startsWith?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type Experience = {
-  __typename?: 'Experience';
-  company: Scalars['String'];
-  createdAt: Maybe<Scalars['DateTime']>;
-  description: Scalars['String'];
-  endDate: Maybe<Scalars['Date']>;
-  locale: Maybe<Scalars['String']>;
-  localizations: Maybe<ExperienceRelationResponseCollection>;
-  logo: UploadFileEntityResponse;
-  publishedAt: Maybe<Scalars['DateTime']>;
-  startDate: Scalars['Date'];
-  technologies: Maybe<TechnologyRelationResponseCollection>;
-  title: Scalars['String'];
-  uid: Scalars['String'];
-  updatedAt: Maybe<Scalars['DateTime']>;
-};
-
-export type ExperienceLocalizationsArgs = {
-  filters?: InputMaybe<ExperienceFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type ExperienceTechnologiesArgs = {
-  filters?: InputMaybe<TechnologyFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type ExperienceEntity = {
-  __typename?: 'ExperienceEntity';
-  attributes: Maybe<Experience>;
-  id: Maybe<Scalars['ID']>;
-};
-
-export type ExperienceEntityResponse = {
-  __typename?: 'ExperienceEntityResponse';
-  data: Maybe<ExperienceEntity>;
-};
-
-export type ExperienceEntityResponseCollection = {
-  __typename?: 'ExperienceEntityResponseCollection';
-  data: Array<ExperienceEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type ExperienceFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ExperienceFiltersInput>>>;
-  company?: InputMaybe<StringFilterInput>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  description?: InputMaybe<StringFilterInput>;
-  endDate?: InputMaybe<DateFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<ExperienceFiltersInput>;
-  not?: InputMaybe<ExperienceFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ExperienceFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  startDate?: InputMaybe<DateFilterInput>;
-  technologies?: InputMaybe<TechnologyFiltersInput>;
-  title?: InputMaybe<StringFilterInput>;
-  uid?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-};
-
-export type ExperienceInput = {
-  company?: InputMaybe<Scalars['String']>;
-  description?: InputMaybe<Scalars['String']>;
-  endDate?: InputMaybe<Scalars['Date']>;
-  logo?: InputMaybe<Scalars['ID']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  startDate?: InputMaybe<Scalars['Date']>;
-  technologies?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  title?: InputMaybe<Scalars['String']>;
-  uid?: InputMaybe<Scalars['String']>;
-};
-
-export type ExperienceRelationResponseCollection = {
-  __typename?: 'ExperienceRelationResponseCollection';
-  data: Array<ExperienceEntity>;
 };
 
 export type FileInfoInput = {
@@ -255,18 +141,7 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph =
-  | About
-  | Experience
-  | Home
-  | I18NLocale
-  | Project
-  | Technology
-  | UploadFile
-  | UploadFolder
-  | UsersPermissionsPermission
-  | UsersPermissionsRole
-  | UsersPermissionsUser;
+export type GenericMorph = About | Home | I18NLocale | Route | Technology | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Home = {
   __typename?: 'Home';
@@ -279,6 +154,7 @@ export type Home = {
   title: Scalars['String'];
   updatedAt: Maybe<Scalars['DateTime']>;
 };
+
 
 export type HomeLocalizationsArgs = {
   publicationState?: InputMaybe<PublicationState>;
@@ -420,11 +296,9 @@ export type Mutation = {
   /** Change user password. Confirm with the current password. */
   changePassword: Maybe<UsersPermissionsLoginPayload>;
   createAboutLocalization: Maybe<AboutEntityResponse>;
-  createExperience: Maybe<ExperienceEntityResponse>;
-  createExperienceLocalization: Maybe<ExperienceEntityResponse>;
   createHomeLocalization: Maybe<HomeEntityResponse>;
-  createProject: Maybe<ProjectEntityResponse>;
-  createProjectLocalization: Maybe<ProjectEntityResponse>;
+  createRoute: Maybe<RouteEntityResponse>;
+  createRouteLocalization: Maybe<RouteEntityResponse>;
   createTechnology: Maybe<TechnologyEntityResponse>;
   createUploadFile: Maybe<UploadFileEntityResponse>;
   createUploadFolder: Maybe<UploadFolderEntityResponse>;
@@ -433,9 +307,8 @@ export type Mutation = {
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
   deleteAbout: Maybe<AboutEntityResponse>;
-  deleteExperience: Maybe<ExperienceEntityResponse>;
   deleteHome: Maybe<HomeEntityResponse>;
-  deleteProject: Maybe<ProjectEntityResponse>;
+  deleteRoute: Maybe<RouteEntityResponse>;
   deleteTechnology: Maybe<TechnologyEntityResponse>;
   deleteUploadFile: Maybe<UploadFileEntityResponse>;
   deleteUploadFolder: Maybe<UploadFolderEntityResponse>;
@@ -455,10 +328,9 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword: Maybe<UsersPermissionsLoginPayload>;
   updateAbout: Maybe<AboutEntityResponse>;
-  updateExperience: Maybe<ExperienceEntityResponse>;
   updateFileInfo: UploadFileEntityResponse;
   updateHome: Maybe<HomeEntityResponse>;
-  updateProject: Maybe<ProjectEntityResponse>;
+  updateRoute: Maybe<RouteEntityResponse>;
   updateTechnology: Maybe<TechnologyEntityResponse>;
   updateUploadFile: Maybe<UploadFileEntityResponse>;
   updateUploadFolder: Maybe<UploadFolderEntityResponse>;
@@ -469,11 +341,13 @@ export type Mutation = {
   upload: UploadFileEntityResponse;
 };
 
+
 export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
 };
+
 
 export type MutationCreateAboutLocalizationArgs = {
   data?: InputMaybe<AboutInput>;
@@ -481,16 +355,6 @@ export type MutationCreateAboutLocalizationArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type MutationCreateExperienceArgs = {
-  data: ExperienceInput;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
-
-export type MutationCreateExperienceLocalizationArgs = {
-  data?: InputMaybe<ExperienceInput>;
-  id?: InputMaybe<Scalars['ID']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
 
 export type MutationCreateHomeLocalizationArgs = {
   data?: InputMaybe<HomeInput>;
@@ -498,86 +362,100 @@ export type MutationCreateHomeLocalizationArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type MutationCreateProjectArgs = {
-  data: ProjectInput;
+
+export type MutationCreateRouteArgs = {
+  data: RouteInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type MutationCreateProjectLocalizationArgs = {
-  data?: InputMaybe<ProjectInput>;
+
+export type MutationCreateRouteLocalizationArgs = {
+  data?: InputMaybe<RouteInput>;
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
+
 
 export type MutationCreateTechnologyArgs = {
   data: TechnologyInput;
 };
 
+
 export type MutationCreateUploadFileArgs = {
   data: UploadFileInput;
 };
+
 
 export type MutationCreateUploadFolderArgs = {
   data: UploadFolderInput;
 };
 
+
 export type MutationCreateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
 };
+
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
 };
 
+
 export type MutationDeleteAboutArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type MutationDeleteExperienceArgs = {
-  id: Scalars['ID'];
-  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
 
 export type MutationDeleteHomeArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type MutationDeleteProjectArgs = {
+
+export type MutationDeleteRouteArgs = {
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
+
 
 export type MutationDeleteTechnologyArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteUploadFileArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteUploadFolderArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationDeleteUsersPermissionsRoleArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationDeleteUsersPermissionsUserArgs = {
   id: Scalars['ID'];
 };
 
+
 export type MutationEmailConfirmationArgs = {
   confirmation: Scalars['String'];
 };
+
 
 export type MutationForgotPasswordArgs = {
   email: Scalars['String'];
 };
 
+
 export type MutationLoginArgs = {
   input: UsersPermissionsLoginInput;
 };
+
 
 export type MutationMultipleUploadArgs = {
   field?: InputMaybe<Scalars['String']>;
@@ -586,13 +464,16 @@ export type MutationMultipleUploadArgs = {
   refId?: InputMaybe<Scalars['ID']>;
 };
 
+
 export type MutationRegisterArgs = {
   input: UsersPermissionsRegisterInput;
 };
 
+
 export type MutationRemoveFileArgs = {
   id: Scalars['ID'];
 };
+
 
 export type MutationResetPasswordArgs = {
   code: Scalars['String'];
@@ -600,57 +481,61 @@ export type MutationResetPasswordArgs = {
   passwordConfirmation: Scalars['String'];
 };
 
+
 export type MutationUpdateAboutArgs = {
   data: AboutInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type MutationUpdateExperienceArgs = {
-  data: ExperienceInput;
-  id: Scalars['ID'];
-  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
 
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
 };
 
+
 export type MutationUpdateHomeArgs = {
   data: HomeInput;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type MutationUpdateProjectArgs = {
-  data: ProjectInput;
+
+export type MutationUpdateRouteArgs = {
+  data: RouteInput;
   id: Scalars['ID'];
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
+
 
 export type MutationUpdateTechnologyArgs = {
   data: TechnologyInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateUploadFileArgs = {
   data: UploadFileInput;
   id: Scalars['ID'];
 };
+
 
 export type MutationUpdateUploadFolderArgs = {
   data: UploadFolderInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateUsersPermissionsRoleArgs = {
   data: UsersPermissionsRoleInput;
   id: Scalars['ID'];
 };
 
+
 export type MutationUpdateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
   id: Scalars['ID'];
 };
+
 
 export type MutationUploadArgs = {
   field?: InputMaybe<Scalars['String']>;
@@ -675,96 +560,20 @@ export type PaginationArg = {
   start?: InputMaybe<Scalars['Int']>;
 };
 
-export type Project = {
-  __typename?: 'Project';
-  createdAt: Maybe<Scalars['DateTime']>;
-  description: Scalars['String'];
-  githubUrl: Scalars['String'];
-  image: UploadFileEntityResponse;
-  locale: Maybe<Scalars['String']>;
-  localizations: Maybe<ProjectRelationResponseCollection>;
-  publishedAt: Maybe<Scalars['DateTime']>;
-  stack: Scalars['JSON'];
-  title: Scalars['String'];
-  uid: Maybe<Scalars['String']>;
-  updatedAt: Maybe<Scalars['DateTime']>;
-  url: Scalars['String'];
-};
-
-export type ProjectLocalizationsArgs = {
-  filters?: InputMaybe<ProjectFiltersInput>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
-
-export type ProjectEntity = {
-  __typename?: 'ProjectEntity';
-  attributes: Maybe<Project>;
-  id: Maybe<Scalars['ID']>;
-};
-
-export type ProjectEntityResponse = {
-  __typename?: 'ProjectEntityResponse';
-  data: Maybe<ProjectEntity>;
-};
-
-export type ProjectEntityResponseCollection = {
-  __typename?: 'ProjectEntityResponseCollection';
-  data: Array<ProjectEntity>;
-  meta: ResponseCollectionMeta;
-};
-
-export type ProjectFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
-  createdAt?: InputMaybe<DateTimeFilterInput>;
-  description?: InputMaybe<StringFilterInput>;
-  githubUrl?: InputMaybe<StringFilterInput>;
-  id?: InputMaybe<IdFilterInput>;
-  locale?: InputMaybe<StringFilterInput>;
-  localizations?: InputMaybe<ProjectFiltersInput>;
-  not?: InputMaybe<ProjectFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ProjectFiltersInput>>>;
-  publishedAt?: InputMaybe<DateTimeFilterInput>;
-  stack?: InputMaybe<JsonFilterInput>;
-  title?: InputMaybe<StringFilterInput>;
-  uid?: InputMaybe<StringFilterInput>;
-  updatedAt?: InputMaybe<DateTimeFilterInput>;
-  url?: InputMaybe<StringFilterInput>;
-};
-
-export type ProjectInput = {
-  description?: InputMaybe<Scalars['String']>;
-  githubUrl?: InputMaybe<Scalars['String']>;
-  image?: InputMaybe<Scalars['ID']>;
-  publishedAt?: InputMaybe<Scalars['DateTime']>;
-  stack?: InputMaybe<Scalars['JSON']>;
-  title?: InputMaybe<Scalars['String']>;
-  uid?: InputMaybe<Scalars['String']>;
-  url?: InputMaybe<Scalars['String']>;
-};
-
-export type ProjectRelationResponseCollection = {
-  __typename?: 'ProjectRelationResponseCollection';
-  data: Array<ProjectEntity>;
-};
-
 export enum PublicationState {
   Live = 'LIVE',
-  Preview = 'PREVIEW',
+  Preview = 'PREVIEW'
 }
 
 export type Query = {
   __typename?: 'Query';
   about: Maybe<AboutEntityResponse>;
-  experience: Maybe<ExperienceEntityResponse>;
-  experiences: Maybe<ExperienceEntityResponseCollection>;
   home: Maybe<HomeEntityResponse>;
   i18NLocale: Maybe<I18NLocaleEntityResponse>;
   i18NLocales: Maybe<I18NLocaleEntityResponseCollection>;
   me: Maybe<UsersPermissionsMe>;
-  project: Maybe<ProjectEntityResponse>;
-  projects: Maybe<ProjectEntityResponseCollection>;
+  route: Maybe<RouteEntityResponse>;
+  routes: Maybe<RouteEntityResponseCollection>;
   technologies: Maybe<TechnologyEntityResponseCollection>;
   technology: Maybe<TechnologyEntityResponse>;
   uploadFile: Maybe<UploadFileEntityResponse>;
@@ -777,32 +586,23 @@ export type Query = {
   usersPermissionsUsers: Maybe<UsersPermissionsUserEntityResponseCollection>;
 };
 
+
 export type QueryAboutArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
   publicationState?: InputMaybe<PublicationState>;
 };
 
-export type QueryExperienceArgs = {
-  id?: InputMaybe<Scalars['ID']>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-};
-
-export type QueryExperiencesArgs = {
-  filters?: InputMaybe<ExperienceFiltersInput>;
-  locale?: InputMaybe<Scalars['I18NLocaleCode']>;
-  pagination?: InputMaybe<PaginationArg>;
-  publicationState?: InputMaybe<PublicationState>;
-  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
-};
 
 export type QueryHomeArgs = {
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
   publicationState?: InputMaybe<PublicationState>;
 };
 
+
 export type QueryI18NLocaleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryI18NLocalesArgs = {
   filters?: InputMaybe<I18NLocaleFiltersInput>;
@@ -810,18 +610,21 @@ export type QueryI18NLocalesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type QueryProjectArgs = {
+
+export type QueryRouteArgs = {
   id?: InputMaybe<Scalars['ID']>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
 };
 
-export type QueryProjectsArgs = {
-  filters?: InputMaybe<ProjectFiltersInput>;
+
+export type QueryRoutesArgs = {
+  filters?: InputMaybe<RouteFiltersInput>;
   locale?: InputMaybe<Scalars['I18NLocaleCode']>;
   pagination?: InputMaybe<PaginationArg>;
   publicationState?: InputMaybe<PublicationState>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type QueryTechnologiesArgs = {
   filters?: InputMaybe<TechnologyFiltersInput>;
@@ -830,13 +633,16 @@ export type QueryTechnologiesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryTechnologyArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
+
 export type QueryUploadFileArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUploadFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
@@ -844,9 +650,11 @@ export type QueryUploadFilesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUploadFolderArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUploadFoldersArgs = {
   filters?: InputMaybe<UploadFolderFiltersInput>;
@@ -854,9 +662,11 @@ export type QueryUploadFoldersArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUsersPermissionsRoleArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUsersPermissionsRolesArgs = {
   filters?: InputMaybe<UsersPermissionsRoleFiltersInput>;
@@ -864,9 +674,11 @@ export type QueryUsersPermissionsRolesArgs = {
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+
 export type QueryUsersPermissionsUserArgs = {
   id?: InputMaybe<Scalars['ID']>;
 };
+
 
 export type QueryUsersPermissionsUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -877,6 +689,70 @@ export type QueryUsersPermissionsUsersArgs = {
 export type ResponseCollectionMeta = {
   __typename?: 'ResponseCollectionMeta';
   pagination: Pagination;
+};
+
+export type Route = {
+  __typename?: 'Route';
+  componentName: Scalars['String'];
+  createdAt: Maybe<Scalars['DateTime']>;
+  heading: Scalars['String'];
+  locale: Maybe<Scalars['String']>;
+  localizations: Maybe<RouteRelationResponseCollection>;
+  pathName: Scalars['String'];
+  publishedAt: Maybe<Scalars['DateTime']>;
+  updatedAt: Maybe<Scalars['DateTime']>;
+};
+
+
+export type RouteLocalizationsArgs = {
+  filters?: InputMaybe<RouteFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type RouteEntity = {
+  __typename?: 'RouteEntity';
+  attributes: Maybe<Route>;
+  id: Maybe<Scalars['ID']>;
+};
+
+export type RouteEntityResponse = {
+  __typename?: 'RouteEntityResponse';
+  data: Maybe<RouteEntity>;
+};
+
+export type RouteEntityResponseCollection = {
+  __typename?: 'RouteEntityResponseCollection';
+  data: Array<RouteEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type RouteFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<RouteFiltersInput>>>;
+  componentName?: InputMaybe<StringFilterInput>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  heading?: InputMaybe<StringFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  locale?: InputMaybe<StringFilterInput>;
+  localizations?: InputMaybe<RouteFiltersInput>;
+  not?: InputMaybe<RouteFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<RouteFiltersInput>>>;
+  pathName?: InputMaybe<StringFilterInput>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type RouteInput = {
+  componentName?: InputMaybe<Scalars['String']>;
+  heading?: InputMaybe<Scalars['String']>;
+  pathName?: InputMaybe<Scalars['String']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type RouteRelationResponseCollection = {
+  __typename?: 'RouteRelationResponseCollection';
+  data: Array<RouteEntity>;
 };
 
 export type StringFilterInput = {
@@ -945,11 +821,6 @@ export type TechnologyInput = {
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   technology?: InputMaybe<Scalars['String']>;
   uid?: InputMaybe<Scalars['String']>;
-};
-
-export type TechnologyRelationResponseCollection = {
-  __typename?: 'TechnologyRelationResponseCollection';
-  data: Array<TechnologyEntity>;
 };
 
 export type UploadFile = {
@@ -1051,11 +922,13 @@ export type UploadFolder = {
   updatedAt: Maybe<Scalars['DateTime']>;
 };
 
+
 export type UploadFolderChildrenArgs = {
   filters?: InputMaybe<UploadFolderFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type UploadFolderFilesArgs = {
   filters?: InputMaybe<UploadFileFiltersInput>;
@@ -1201,11 +1074,13 @@ export type UsersPermissionsRole = {
   users: Maybe<UsersPermissionsUserRelationResponseCollection>;
 };
 
+
 export type UsersPermissionsRolePermissionsArgs = {
   filters?: InputMaybe<UsersPermissionsPermissionFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
+
 
 export type UsersPermissionsRoleUsersArgs = {
   filters?: InputMaybe<UsersPermissionsUserFiltersInput>;
@@ -1321,20 +1196,12 @@ export type UsersPermissionsUserRelationResponseCollection = {
   data: Array<UsersPermissionsUserEntity>;
 };
 
-export type HomeQueryVariables = Exact<{ [key: string]: never }>;
+export type HomeQueryVariables = Exact<{ [key: string]: never; }>;
 
-export type HomeQuery = {
-  __typename?: 'Query';
-  home: {
-    __typename?: 'HomeEntityResponse';
-    data: {
-      __typename?: 'HomeEntity';
-      attributes: {
-        __typename?: 'Home';
-        name: string;
-        title: string;
-        location: string;
-      } | null;
-    } | null;
-  } | null;
-};
+
+export type HomeQuery = { __typename?: 'Query', home: { __typename?: 'HomeEntityResponse', data: { __typename?: 'HomeEntity', attributes: { __typename?: 'Home', name: string, title: string, location: string } | null } | null } | null };
+
+export type RoutesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type RoutesQuery = { __typename?: 'Query', routes: { __typename?: 'RouteEntityResponseCollection', data: Array<{ __typename?: 'RouteEntity', id: string | null, attributes: { __typename?: 'Route', heading: string, pathName: string, componentName: string } | null }> } | null };

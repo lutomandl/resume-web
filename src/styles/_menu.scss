@@ -104,6 +104,7 @@
     position: relative;
     top: 1vmin;
     text-decoration: none;
+    text-transform: capitalize;
 
     @media (min-width: config.$breakpoint-md) {
       height: calc(10vmin + 0.5vmin);

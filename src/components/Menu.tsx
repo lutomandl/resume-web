@@ -3,9 +3,14 @@ import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
+import { RouteType } from '../types';
 import XIcon from './icons/XIcon';
 
-export default function Menu() {
+interface MenuProps {
+  routes: RouteType[] | null;
+}
+
+export default function Menu({ routes }: MenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -53,18 +58,15 @@ export default function Menu() {
             'menu__list--open': isOpen,
           })}
         >
-          <Link className="menu__item" to="/about">
-            About
-          </Link>
-          <Link className="menu__item" to="/projects">
-            Projects
-          </Link>
-          <Link className="menu__item" to="/experience">
-            Exeprience
-          </Link>
-          <Link className="menu__item" to="/contact">
-            Contact
-          </Link>
+          {routes?.map(({ attributes }) => (
+            <Link
+              key={attributes?.pathName}
+              className="menu__item"
+              to={attributes?.pathName || 'error'}
+            >
+              {attributes?.heading}
+            </Link>
+          ))}
           <a href="/assets/CV.pdf" target="_blank" className="menu__item">
             CV
           </a>

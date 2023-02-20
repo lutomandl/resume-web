@@ -1,12 +1,74 @@
+import React from 'react';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Menu from './components/Menu';
 import Page from './components/Page';
-// import routes from './routes';
+import About from './components/routes/About';
+import Contact from './components/routes/Contact';
+import Experience from './components/routes/Experience';
+import Home from './components/routes/Home';
+import Projects from './components/routes/Projects';
+import RouteTransition from './components/RouteTransition';
+import { useRoutes } from './graphql/queries';
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const { loading, data, error } = useRoutes();
+
+  if (error) {
+    // eslint-disable-next-line no-console
+    console.error(error);
+    navigate('/error');
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  const routes = data?.routes?.data;
+
+  const mapRouteToComponent = (route: string, heading: string) => {
+    switch (route) {
+      case 'about':
+        return <About heading={heading} />;
+      case 'projects':
+        return <Projects heading={heading} />;
+      case 'experience':
+        return <Experience heading={heading} />;
+      case 'contact':
+        return <Contact heading={heading} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
-      <Menu />
-      <Page />
+      <Menu routes={routes || null} />
+      <RouteTransition>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Page />}>
+            <Route index element={<Home />} />
+            {routes?.map(
+              ({ attributes }) =>
+                attributes && (
+                  <Route
+                    key={attributes.pathName}
+                    path={attributes.pathName}
+                    element={mapRouteToComponent(
+                      attributes.pathName,
+                      attributes.heading
+                    )}
+                  />
+                )
+            )}
+            {/* <Route path="about" element={<About heading="About" />} />
+            <Route path="projects" element={<Projects />} />
+            <Route path="experience" element={<Experience />} />
+            <Route path="contact" element={<Contact />} /> */}
+          </Route>
+        </Routes>
+      </RouteTransition>
     </>
   );
 }

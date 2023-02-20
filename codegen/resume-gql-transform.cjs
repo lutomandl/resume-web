@@ -7,8 +7,7 @@ module.exports = {
   plugin(schema, documents) {
     return [
       "import { useMutation, useQuery, useManualQuery, UseQueryOptions, UseClientRequestOptions } from 'graphql-hooks';",
-      // "import { GraphQlError } from '../types'",
-      // "import config from '../config';",
+      "import { GraphQlError } from '../types'",
       "import * as GQL from './schema';",
     ]
       .concat(

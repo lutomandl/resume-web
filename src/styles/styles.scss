@@ -9,6 +9,7 @@
 @use 'icon';
 @use 'menu';
 @use 'page';
+@use 'paragraph';
 
 body {
   margin: 0;
@@ -18,7 +19,7 @@ body {
   font-family: config.$font-paragraphs;
   color: config.$text-color;
   font-size: config.$font-base-size;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 a {
