@@ -45,30 +45,24 @@ function App() {
   return (
     <>
       <Menu routes={routes || null} />
-      <RouteTransition>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Page />}>
-            <Route index element={<Home />} />
-            {routes?.map(
-              ({ attributes }) =>
-                attributes && (
-                  <Route
-                    key={attributes.pathName}
-                    path={attributes.pathName}
-                    element={mapRouteToComponent(
-                      attributes.pathName,
-                      attributes.heading
-                    )}
-                  />
-                )
-            )}
-            {/* <Route path="about" element={<About heading="About" />} />
-            <Route path="projects" element={<Projects />} />
-            <Route path="experience" element={<Experience />} />
-            <Route path="contact" element={<Contact />} /> */}
-          </Route>
-        </Routes>
-      </RouteTransition>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<Page />}>
+          <Route index element={<Home />} />
+          {routes?.map(
+            ({ attributes }) =>
+              attributes && (
+                <Route
+                  key={attributes.pathName}
+                  path={attributes.pathName}
+                  element={mapRouteToComponent(
+                    attributes.pathName,
+                    attributes.heading
+                  )}
+                />
+              )
+          )}
+        </Route>
+      </Routes>
     </>
   );
 }

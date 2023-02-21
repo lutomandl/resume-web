@@ -13,6 +13,7 @@ module.exports = {
       .concat(
         documents.map(({ location, document: { definitions } }) => {
           if (definitions.length > 1) {
+            // eslint-disable-next-line no-console
             console.warn('Only one definition per file is supported', location);
             return location;
           }
