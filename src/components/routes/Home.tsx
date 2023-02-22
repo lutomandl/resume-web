@@ -1,11 +1,12 @@
+import { useLocomotiveScroll } from 'react-locomotive-scroll';
 import Heading from '../Heading';
 import InitialAnimation from '../InitialAnimation';
 
 export default function Home() {
   return (
-    <section className="home">
+    <section data-scroll-section className="home" id="home">
       <InitialAnimation initialPosition="-100vh" className="home__motionDiv">
-        <Heading align="right">LUBOS TOMANDL</Heading>
+        <h1 className="heading heading--right">LUBOS TOMANDL</h1>
       </InitialAnimation>
       <InitialAnimation
         initialPosition="100vh"

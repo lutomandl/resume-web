@@ -1,15 +1,11 @@
 import Heading from '../Heading';
 import Paragraph from '../Paragraph';
 
-interface AboutProps {
-  heading: string;
-}
-
-export default function About({ heading }: AboutProps) {
+export default function About() {
   return (
-    <section className="about">
+    <section data-scroll-section className="about" id="about">
       <Heading element="h1" align="right">
-        {heading}
+        About me
       </Heading>
       <Paragraph>
         Hey there, I&apos;m Luboš – a frontend engineer based in Berlin. I

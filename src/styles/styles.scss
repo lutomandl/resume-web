@@ -1,8 +1,7 @@
 @use '../../node_modules/the-new-css-reset';
 @use '../../node_modules/normalize.css';
-
+@use '../../node_modules/locomotive-scroll/dist/locomotive-scroll.css';
 @use 'config';
-
 @use 'about';
 @use 'heading';
 @use 'home';

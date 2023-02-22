@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
+import { HTMLAttributes, ReactNode } from 'react';
 
 interface InitialAnimationProps {
   children: ReactNode;
