@@ -1,9 +1,11 @@
-import { Outlet } from 'react-router-dom';
+import About from './About';
+import Header from './Header';
 
 export default function Page() {
   return (
     <main className="page">
-      <Outlet />
+      <Header />
+      <About heading="About" />
     </main>
   );
 }

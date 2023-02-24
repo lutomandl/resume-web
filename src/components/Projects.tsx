@@ -1,5 +1,3 @@
-import Heading from '../Heading';
-
 interface ProjectsProps {
   heading: string;
 }
@@ -7,7 +5,7 @@ interface ProjectsProps {
 export default function Projects({ heading }: ProjectsProps) {
   return (
     <section className="projects">
-      <Heading element="h1">{heading}</Heading>
+      <h2>{heading}</h2>
       <p>Coming soon...</p>
     </section>
   );

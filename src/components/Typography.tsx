@@ -1,0 +1,32 @@
+import { HTMLAttributes, ReactNode } from 'react';
+
+interface TypographyProps extends HTMLAttributes<HTMLElement> {
+  children: ReactNode;
+  element?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  variant?:
+    | 'paragraph'
+    | 'heading-bold'
+    | 'heading-regular'
+    | 'heading-light'
+    | 'menu';
+  align?: 'left' | 'center' | 'right';
+}
+
+export default function Typography({
+  children,
+  element = 'p',
+  align = 'left',
+  variant = 'paragraph',
+  ...props
+}: TypographyProps) {
+  const Component = element;
+
+  return (
+    <Component
+      className={`typography typography--${variant} typography--${align}`}
+      {...props}
+    >
+      {children}
+    </Component>
+  );
+}

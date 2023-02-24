@@ -11,3 +11,8 @@ export type RouteType = {
     componentName: string | null;
   } | null;
 };
+
+export type MenuType = {
+  id: string;
+  heading: string;
+};
