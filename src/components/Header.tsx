@@ -18,7 +18,7 @@ export default function Header() {
         className="header__motionDiv"
         animate={{ opacity: 1, x: 0 }}
         initial={{ opacity: 0, x: '100vh' }}
-        transition={{ ease: 'anticipate', duration: 3, delay: 1 }}
+        transition={{ ease: 'anticipate', duration: 3, delay: 0.2 }}
       >
         <Typography element="h1" variant="heading-regular">
           Frontend Developer
@@ -28,7 +28,7 @@ export default function Header() {
         className="header__motionDiv"
         animate={{ opacity: 1, x: 0 }}
         initial={{ opacity: 0, x: '-100vh' }}
-        transition={{ ease: 'anticipate', duration: 3, delay: 2 }}
+        transition={{ ease: 'anticipate', duration: 3, delay: 0.4 }}
       >
         <Typography element="h1" align="right" variant="heading-light">
           Berlin, DE

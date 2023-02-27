@@ -32,7 +32,7 @@ export default function Menu({ sections }: MenuProps) {
     <motion.div
       animate={{ opacity: 1 }}
       initial={{ opacity: 0 }}
-      transition={{ ease: 'anticipate', delay: 3.8, duration: 2 }}
+      transition={{ ease: 'anticipate', delay: 1, duration: 2 }}
     >
       <nav
         className={clsx('menu', {

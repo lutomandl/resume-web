@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { HTMLAttributes, ReactNode } from 'react';
 
 interface TypographyProps extends HTMLAttributes<HTMLElement> {
@@ -10,6 +11,7 @@ interface TypographyProps extends HTMLAttributes<HTMLElement> {
     | 'heading-light'
     | 'menu';
   align?: 'left' | 'center' | 'right';
+  className?: string;
 }
 
 export default function Typography({
@@ -17,13 +19,14 @@ export default function Typography({
   element = 'p',
   align = 'left',
   variant = 'paragraph',
+  className,
   ...props
 }: TypographyProps) {
   const Component = element;
 
   return (
     <Component
-      className={`typography typography--${variant} typography--${align}`}
+      className={`typography typography--${variant} typography--${align} ${className}`}
       {...props}
     >
       {children}
