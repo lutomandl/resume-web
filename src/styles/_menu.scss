@@ -1,61 +1,68 @@
 @use 'config';
-@use 'heading';
 
 .menu {
-  padding: config.$header-padding-xs;
-  height: config.$header-height-xs;
+  padding: config.$menu-padding-xs;
+  height: config.$menu-height-xs;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100;
-  background-color: config.$bg-color;
   transition: height 0.8s ease-out;
 
   @media (min-width: config.$breakpoint-md) {
-    padding: config.$header-padding-md;
-    height: config.$header-height-md;
+    padding: config.$menu-padding-md;
+    height: config.$menu-height-md;
   }
 
   &--open {
     height: 100vh;
 
     @media (min-width: config.$breakpoint-md) {
-      height: config.$header-height-md;
-    }
-  }
-
-  &__container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: config.$header-padding-xs;
-    height: 100%;
-
-    @media (min-width: config.$breakpoint-md) {
-      gap: config.$header-padding-md;
-      align-items: center;
+      height: config.$menu-height-md;
     }
   }
 
   &__icon {
     position: relative;
-    background-color: black;
+    background-color: config.$text-color;
     border-radius: 50%;
     height: config.$menu-icon-size-xs;
     width: config.$menu-icon-size-xs;
     z-index: 100;
-
-    &--open {
-      background-color: transparent;
-      border: 1.5vmin solid black;
-      cursor: pointer;
-    }
+    border: 1.2vmin solid config.$text-color;
 
     @media (min-width: config.$breakpoint-md) {
       border-width: 1vmin;
       height: config.$menu-icon-size-md;
       width: config.$menu-icon-size-md;
+    }
+
+    &--open {
+      background-color: transparent;
+      cursor: pointer;
+    }
+  }
+
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+    transform: translateY(-100vh);
+    background-color: config.$bg-color;
+
+    @media (min-width: config.$breakpoint-md) {
+      transform: translateX(-30vw);
+      height: config.$menu-height-md;
+      opacity: 0;
+    }
+
+    &--open {
+      transform: translateY(0) translateX(0);
+      opacity: 1;
     }
   }
 
@@ -63,10 +70,8 @@
     position: absolute;
     height: config.$menu-icon-size-xs;
     width: config.$menu-icon-size-xs;
-    top: 0;
-    right: 0;
-    height: config.$menu-icon-size-xs;
-    width: config.$menu-icon-size-xs;
+    top: config.$menu-padding-xs;
+    right: config.$menu-padding-xs;
 
     @media (min-width: config.$breakpoint-md) {
       display: none;
@@ -75,40 +80,25 @@
 
   &__list {
     position: relative;
-    width: 100%;
+    top: 20%;
+    left: config.$menu-padding-xs;
     display: flex;
     flex-direction: column;
-    gap: 0.4vmin;
-    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
-    transform: translateY(-100vh);
-    opacity: 0;
+    gap: 3vmin;
 
     @media (min-width: config.$breakpoint-md) {
       flex-direction: row;
-      transform: translateX(-30vw);
-      opacity: 0;
-    }
-
-    &--open {
-      transform: translateX(0);
-      opacity: 1;
+      left: calc(2 * config.$menu-padding-md + config.$menu-icon-size-md);
+      gap: 1vmin;
     }
   }
 
   &__item {
-    @extend .heading;
-    letter-spacing: -0.2vmin;
     width: fit-content;
-    height: auto;
-    font-size: 20vmin;
     position: relative;
-    top: 1vmin;
-    text-decoration: none;
-    text-transform: capitalize;
+    text-decoration: unset;
 
     @media (min-width: config.$breakpoint-md) {
-      height: calc(10vmin + 0.5vmin);
-      font-size: 10vmin;
     }
 
     &::after {
@@ -117,7 +107,7 @@
       display: block;
       width: 100%;
       height: 0.5vmin;
-      background-color: black;
+      background-color: config.$text-color;
       transition: height 0.3s ease-in-out;
     }
 
@@ -127,11 +117,6 @@
       &::after {
         height: 0.7vmin;
       }
-    }
-
-    &__icon {
-      width: 8vmin;
-      height: 8vmin;
     }
   }
 }

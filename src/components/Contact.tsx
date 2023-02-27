@@ -1,4 +1,4 @@
-import Heading from '../Heading';
+import Heading from './Header';
 
 interface CuntactProps {
   heading: string;
@@ -7,7 +7,7 @@ interface CuntactProps {
 export default function Contact({ heading }: CuntactProps) {
   return (
     <section className="contact">
-      <Heading element="h1">{heading}</Heading>
+      <h2>{heading}</h2>
       <p>Coming soon...</p>
     </section>
   );

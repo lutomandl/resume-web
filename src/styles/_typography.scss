@@ -1,0 +1,66 @@
+@use 'config';
+
+@mixin heading {
+  font-family: 'New Title', sans-serif;
+  font-size: (min(33vh, 25vw));
+  letter-spacing: -0.5vmin;
+  line-height: 0.8;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.typography {
+  &--paragraph {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    @media (min-width: config.$breakpoint-md) {
+      font-size: 2rem;
+    }
+  }
+
+  &--heading-bold {
+    @include heading;
+    font-weight: 700;
+    font-family: 'New Title', sans-serif;
+    font-size: (min(33vh, 25vw));
+    letter-spacing: -0.5vmin;
+    line-height: 0.8;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  &--heading-regular {
+    @include heading;
+    font-weight: 400;
+  }
+
+  &--heading-light {
+    @include heading;
+    font-weight: 300;
+  }
+
+  &--menu {
+    @include heading;
+    text-transform: capitalize;
+    font-size: 20vmin;
+    letter-spacing: -0.3vmin;
+
+    @media (min-width: config.$breakpoint-md) {
+      font-size: 10vmin;
+    }
+  }
+
+  &--left {
+    text-align: left;
+  }
+
+  &--center {
+    text-align: center;
+  }
+
+  &--right {
+    text-align: right;
+  }
+}
