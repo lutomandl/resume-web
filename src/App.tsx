@@ -1,35 +1,40 @@
+import { useEffect, useState } from 'react';
 import Header from './components/Header';
+import Loader from './components/Loader';
 import Menu from './components/Menu';
 import Page from './components/Page';
 
 function App() {
-  // const { loading, data, error } = useRoutes();
+  const [loading, setLoading] = useState(true);
 
-  // if (error) {
-  //   // eslint-disable-next-line no-console
-  //   console.error(error);
-  //   navigate('/error');
-  // }
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
   const sections = [
     {
-      id: '#about',
+      id: 'about',
       heading: 'About',
     },
     {
-      id: '#projects',
+      id: 'experience',
+      heading: 'Experience',
+    },
+    {
+      id: 'projects',
       heading: 'Projects',
     },
     {
-      id: '#experience',
-      heading: 'Experience',
+      id: 'contact',
+      heading: 'Contact',
     },
   ];
 
-  return (
+  return loading ? (
+    <Loader />
+  ) : (
     <>
       <Page />
       <Menu sections={sections} />

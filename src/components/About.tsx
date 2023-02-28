@@ -1,11 +1,7 @@
 import Typography from './Typography';
 import '../../public/assets/IMG_9315.jpg';
 
-interface AboutProps {
-  heading: string;
-}
-
-export default function About({ heading }: AboutProps) {
+export default function About() {
   return (
     <section className="about">
       <Typography

@@ -64,7 +64,11 @@ export default function Menu({ sections }: MenuProps) {
             })}
           >
             {sections?.map((section) => (
-              <a key={section.id} className="menu__item" href={section.id}>
+              <a
+                key={section.id}
+                className="menu__item"
+                href={`#${section.id}`}
+              >
                 <Typography variant="menu" element="span">
                   {section.heading}
                 </Typography>
