@@ -1,0 +1,16 @@
+.more {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  &__title {
+    text-align: center;
+  }
+
+  &__text {
+    text-align: center;
+    margin-top: 2vmin;
+  }
+}

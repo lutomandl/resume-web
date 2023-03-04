@@ -1,51 +1,80 @@
 // DO NOT EDIT!
 // THIS FILE IS GENERATED WITH GRAPH GL CODEGEN.
 
-import { useMutation, useQuery, useManualQuery, UseQueryOptions, UseClientRequestOptions } from 'graphql-hooks';
+import {
+  useMutation,
+  useQuery,
+  useManualQuery,
+  UseQueryOptions,
+  UseClientRequestOptions,
+} from 'graphql-hooks';
 
-import { GraphQlError } from '../types'
+import { GraphQlError } from '../types';
 
 import * as GQL from './schema';
 
-// Home
-export const HomeQueryString = `query Home {
-  home {
+// Data
+export const DataQueryString = `query Data {
+  header {
     data {
       attributes {
         name
-        title
-        location
+        profession
+        residence
       }
     }
   }
-}
-`;
-export type Home_Query_type = typeof HomeQueryString;
-export function useHome(options?: UseQueryOptions<GQL.HomeQuery, GQL.HomeQueryVariables>) {
-              return useQuery<GQL.HomeQuery, GQL.HomeQueryVariables, GraphQlError>(HomeQueryString, {...options, operationName: 'Home'});
+  about {
+    data {
+      attributes {
+        firstParagraph
+        secondParagraph
+        thirdParagraph
+        image {
+          data {
+            attributes {
+              url
+              alternativeText
+              formats
+            }
           }
-export function useManualHome(options?: UseClientRequestOptions<GQL.HomeQuery, GQL.HomeQueryVariables>) {
-              return useManualQuery<GQL.HomeQuery, GQL.HomeQueryVariables, GraphQlError>(HomeQueryString, {...options, operationName: 'Home'});
+        }
+        heading {
+          data {
+            attributes {
+              heading
+              sectionId
+            }
           }
-
-// Routes
-export const RoutesQueryString = `query Routes {
-  routes(sort: "id:asc") {
+        }
+      }
+    }
+  }
+  headings(sort: "id:asc") {
     data {
       id
       attributes {
         heading
-        pathName
-        componentName
+        sectionId
       }
     }
   }
 }
 `;
-export type Routes_Query_type = typeof RoutesQueryString;
-export function useRoutes(options?: UseQueryOptions<GQL.RoutesQuery, GQL.RoutesQueryVariables>) {
-              return useQuery<GQL.RoutesQuery, GQL.RoutesQueryVariables, GraphQlError>(RoutesQueryString, {...options, operationName: 'Routes'});
-          }
-export function useManualRoutes(options?: UseClientRequestOptions<GQL.RoutesQuery, GQL.RoutesQueryVariables>) {
-              return useManualQuery<GQL.RoutesQuery, GQL.RoutesQueryVariables, GraphQlError>(RoutesQueryString, {...options, operationName: 'Routes'});
-          }
+export type Data_Query_type = typeof DataQueryString;
+export function useData(
+  options?: UseQueryOptions<GQL.DataQuery, GQL.DataQueryVariables>
+) {
+  return useQuery<GQL.DataQuery, GQL.DataQueryVariables, GraphQlError>(
+    DataQueryString,
+    { ...options, operationName: 'Data' }
+  );
+}
+export function useManualData(
+  options?: UseClientRequestOptions<GQL.DataQuery, GQL.DataQueryVariables>
+) {
+  return useManualQuery<GQL.DataQuery, GQL.DataQueryVariables, GraphQlError>(
+    DataQueryString,
+    { ...options, operationName: 'Data' }
+  );
+}

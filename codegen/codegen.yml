@@ -23,6 +23,6 @@ generates:
       - add:
           content: "// DO NOT EDIT!\n// THIS FILE IS GENERATED WITH GRAPH GL CODEGEN.\n"
       - codegen/resume-gql-transform.cjs
-# hooks:
-#   afterAllFileWrite:
-#     - prettier --write
+hooks:
+  afterAllFileWrite:
+    - prettier --write

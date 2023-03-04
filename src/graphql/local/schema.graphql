@@ -1,15 +1,17 @@
 # NOTE : This file is a copy of the servers schema.
 
-
 type About {
   createdAt: DateTime
   firstParagraph: String!
+  heading: HeadingEntityResponse
   image: UploadFileEntityResponse!
   locale: String
-  localizations(publicationState: PublicationState = LIVE): AboutRelationResponseCollection
+  localizations(
+    publicationState: PublicationState = LIVE
+  ): AboutRelationResponseCollection
   publishedAt: DateTime
-  route: RouteEntityResponse
   secondParagraph: String!
+  sectionId: String!
   thirdParagraph: String!
   updatedAt: DateTime
 }
@@ -25,10 +27,11 @@ type AboutEntityResponse {
 
 input AboutInput {
   firstParagraph: String
+  heading: ID
   image: ID
   publishedAt: DateTime
-  route: ID
   secondParagraph: String
+  sectionId: String
   thirdParagraph: String
 }
 
@@ -61,6 +64,35 @@ input BooleanFilterInput {
 }
 
 """
+A date string, such as 2007-12-03, compliant with the `full-date` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar Date
+
+input DateFilterInput {
+  and: [Date]
+  between: [Date]
+  contains: Date
+  containsi: Date
+  endsWith: Date
+  eq: Date
+  eqi: Date
+  gt: Date
+  gte: Date
+  in: [Date]
+  lt: Date
+  lte: Date
+  ne: Date
+  not: DateFilterInput
+  notContains: Date
+  notContainsi: Date
+  notIn: [Date]
+  notNull: Boolean
+  null: Boolean
+  or: [Date]
+  startsWith: Date
+}
+
+"""
 A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
 """
 scalar DateTime
@@ -87,6 +119,139 @@ input DateTimeFilterInput {
   null: Boolean
   or: [DateTime]
   startsWith: DateTime
+}
+
+type Employer {
+  createdAt: DateTime
+  experiences(
+    filters: ExperienceFiltersInput
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): ExperienceRelationResponseCollection
+  locale: String
+  localizations(
+    filters: EmployerFiltersInput
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): EmployerRelationResponseCollection
+  logo: UploadFileEntityResponse!
+  name: String!
+  publishedAt: DateTime
+  updatedAt: DateTime
+}
+
+type EmployerEntity {
+  attributes: Employer
+  id: ID
+}
+
+type EmployerEntityResponse {
+  data: EmployerEntity
+}
+
+type EmployerEntityResponseCollection {
+  data: [EmployerEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input EmployerFiltersInput {
+  and: [EmployerFiltersInput]
+  createdAt: DateTimeFilterInput
+  experiences: ExperienceFiltersInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: EmployerFiltersInput
+  name: StringFilterInput
+  not: EmployerFiltersInput
+  or: [EmployerFiltersInput]
+  publishedAt: DateTimeFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input EmployerInput {
+  experiences: [ID]
+  logo: ID
+  name: String
+  publishedAt: DateTime
+}
+
+type EmployerRelationResponseCollection {
+  data: [EmployerEntity!]!
+}
+
+type Experience {
+  createdAt: DateTime
+  description: String!
+  employer: EmployerEntityResponse
+  endDate: Date
+  locale: String
+  localizations(
+    filters: ExperienceFiltersInput
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): ExperienceRelationResponseCollection
+  location: String!
+  position: String!
+  publishedAt: DateTime
+  startDate: Date!
+  technologies(
+    filters: TechnologyFiltersInput
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): TechnologyRelationResponseCollection
+  updatedAt: DateTime
+}
+
+type ExperienceEntity {
+  attributes: Experience
+  id: ID
+}
+
+type ExperienceEntityResponse {
+  data: ExperienceEntity
+}
+
+type ExperienceEntityResponseCollection {
+  data: [ExperienceEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input ExperienceFiltersInput {
+  and: [ExperienceFiltersInput]
+  createdAt: DateTimeFilterInput
+  description: StringFilterInput
+  employer: EmployerFiltersInput
+  endDate: DateFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: ExperienceFiltersInput
+  location: StringFilterInput
+  not: ExperienceFiltersInput
+  or: [ExperienceFiltersInput]
+  position: StringFilterInput
+  publishedAt: DateTimeFilterInput
+  startDate: DateFilterInput
+  technologies: TechnologyFiltersInput
+  updatedAt: DateTimeFilterInput
+}
+
+input ExperienceInput {
+  description: String
+  employer: ID
+  endDate: Date
+  location: String
+  position: String
+  publishedAt: DateTime
+  startDate: Date
+  technologies: [ID]
+}
+
+type ExperienceRelationResponseCollection {
+  data: [ExperienceEntity!]!
 }
 
 input FileInfoInput {
@@ -119,37 +284,105 @@ input FloatFilterInput {
   startsWith: Float
 }
 
-union GenericMorph = About | Home | I18NLocale | Route | Technology | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser
+union GenericMorph =
+    About
+  | Employer
+  | Experience
+  | Header
+  | Heading
+  | I18NLocale
+  | Project
+  | Technology
+  | UploadFile
+  | UploadFolder
+  | UsersPermissionsPermission
+  | UsersPermissionsRole
+  | UsersPermissionsUser
 
-type Home {
+type Header {
   createdAt: DateTime
   locale: String
-  localizations(publicationState: PublicationState = LIVE): HomeRelationResponseCollection
-  location: String!
+  localizations(
+    publicationState: PublicationState = LIVE
+  ): HeaderRelationResponseCollection
   name: String!
+  profession: String!
   publishedAt: DateTime
-  title: String!
+  residence: String!
   updatedAt: DateTime
 }
 
-type HomeEntity {
-  attributes: Home
+type HeaderEntity {
+  attributes: Header
   id: ID
 }
 
-type HomeEntityResponse {
-  data: HomeEntity
+type HeaderEntityResponse {
+  data: HeaderEntity
 }
 
-input HomeInput {
-  location: String
+input HeaderInput {
   name: String
+  profession: String
   publishedAt: DateTime
-  title: String
+  residence: String
 }
 
-type HomeRelationResponseCollection {
-  data: [HomeEntity!]!
+type HeaderRelationResponseCollection {
+  data: [HeaderEntity!]!
+}
+
+type Heading {
+  createdAt: DateTime
+  heading: String!
+  locale: String
+  localizations(
+    filters: HeadingFiltersInput
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): HeadingRelationResponseCollection
+  publishedAt: DateTime
+  sectionId: String!
+  updatedAt: DateTime
+}
+
+type HeadingEntity {
+  attributes: Heading
+  id: ID
+}
+
+type HeadingEntityResponse {
+  data: HeadingEntity
+}
+
+type HeadingEntityResponseCollection {
+  data: [HeadingEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input HeadingFiltersInput {
+  and: [HeadingFiltersInput]
+  createdAt: DateTimeFilterInput
+  heading: StringFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: HeadingFiltersInput
+  not: HeadingFiltersInput
+  or: [HeadingFiltersInput]
+  publishedAt: DateTimeFilterInput
+  sectionId: StringFilterInput
+  updatedAt: DateTimeFilterInput
+}
+
+input HeadingInput {
+  heading: String
+  publishedAt: DateTime
+  sectionId: String
+}
+
+type HeadingRelationResponseCollection {
+  data: [HeadingEntity!]!
 }
 
 type I18NLocale {
@@ -159,7 +392,9 @@ type I18NLocale {
   updatedAt: DateTime
 }
 
-"""A string used to identify an i18n locale"""
+"""
+A string used to identify an i18n locale
+"""
 scalar I18NLocaleCode
 
 type I18NLocaleEntity {
@@ -265,64 +500,180 @@ input JSONFilterInput {
 }
 
 type Mutation {
-  """Change user password. Confirm with the current password."""
-  changePassword(currentPassword: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
-  createAboutLocalization(data: AboutInput, id: ID, locale: I18NLocaleCode): AboutEntityResponse
-  createHomeLocalization(data: HomeInput, id: ID, locale: I18NLocaleCode): HomeEntityResponse
-  createRoute(data: RouteInput!, locale: I18NLocaleCode): RouteEntityResponse
-  createRouteLocalization(data: RouteInput, id: ID, locale: I18NLocaleCode): RouteEntityResponse
+  """
+  Change user password. Confirm with the current password.
+  """
+  changePassword(
+    currentPassword: String!
+    password: String!
+    passwordConfirmation: String!
+  ): UsersPermissionsLoginPayload
+  createAboutLocalization(
+    data: AboutInput
+    id: ID
+    locale: I18NLocaleCode
+  ): AboutEntityResponse
+  createEmployer(
+    data: EmployerInput!
+    locale: I18NLocaleCode
+  ): EmployerEntityResponse
+  createEmployerLocalization(
+    data: EmployerInput
+    id: ID
+    locale: I18NLocaleCode
+  ): EmployerEntityResponse
+  createExperience(
+    data: ExperienceInput!
+    locale: I18NLocaleCode
+  ): ExperienceEntityResponse
+  createExperienceLocalization(
+    data: ExperienceInput
+    id: ID
+    locale: I18NLocaleCode
+  ): ExperienceEntityResponse
+  createHeaderLocalization(
+    data: HeaderInput
+    id: ID
+    locale: I18NLocaleCode
+  ): HeaderEntityResponse
+  createHeading(
+    data: HeadingInput!
+    locale: I18NLocaleCode
+  ): HeadingEntityResponse
+  createHeadingLocalization(
+    data: HeadingInput
+    id: ID
+    locale: I18NLocaleCode
+  ): HeadingEntityResponse
+  createProject(
+    data: ProjectInput!
+    locale: I18NLocaleCode
+  ): ProjectEntityResponse
+  createProjectLocalization(
+    data: ProjectInput
+    id: ID
+    locale: I18NLocaleCode
+  ): ProjectEntityResponse
   createTechnology(data: TechnologyInput!): TechnologyEntityResponse
   createUploadFile(data: UploadFileInput!): UploadFileEntityResponse
   createUploadFolder(data: UploadFolderInput!): UploadFolderEntityResponse
 
-  """Create a new role"""
-  createUsersPermissionsRole(data: UsersPermissionsRoleInput!): UsersPermissionsCreateRolePayload
+  """
+  Create a new role
+  """
+  createUsersPermissionsRole(
+    data: UsersPermissionsRoleInput!
+  ): UsersPermissionsCreateRolePayload
 
-  """Create a new user"""
-  createUsersPermissionsUser(data: UsersPermissionsUserInput!): UsersPermissionsUserEntityResponse!
+  """
+  Create a new user
+  """
+  createUsersPermissionsUser(
+    data: UsersPermissionsUserInput!
+  ): UsersPermissionsUserEntityResponse!
   deleteAbout(locale: I18NLocaleCode): AboutEntityResponse
-  deleteHome(locale: I18NLocaleCode): HomeEntityResponse
-  deleteRoute(id: ID!, locale: I18NLocaleCode): RouteEntityResponse
+  deleteEmployer(id: ID!, locale: I18NLocaleCode): EmployerEntityResponse
+  deleteExperience(id: ID!, locale: I18NLocaleCode): ExperienceEntityResponse
+  deleteHeader(locale: I18NLocaleCode): HeaderEntityResponse
+  deleteHeading(id: ID!, locale: I18NLocaleCode): HeadingEntityResponse
+  deleteProject(id: ID!, locale: I18NLocaleCode): ProjectEntityResponse
   deleteTechnology(id: ID!): TechnologyEntityResponse
   deleteUploadFile(id: ID!): UploadFileEntityResponse
   deleteUploadFolder(id: ID!): UploadFolderEntityResponse
 
-  """Delete an existing role"""
+  """
+  Delete an existing role
+  """
   deleteUsersPermissionsRole(id: ID!): UsersPermissionsDeleteRolePayload
 
-  """Delete an existing user"""
+  """
+  Delete an existing user
+  """
   deleteUsersPermissionsUser(id: ID!): UsersPermissionsUserEntityResponse!
 
-  """Confirm an email users email address"""
+  """
+  Confirm an email users email address
+  """
   emailConfirmation(confirmation: String!): UsersPermissionsLoginPayload
 
-  """Request a reset password token"""
+  """
+  Request a reset password token
+  """
   forgotPassword(email: String!): UsersPermissionsPasswordPayload
   login(input: UsersPermissionsLoginInput!): UsersPermissionsLoginPayload!
-  multipleUpload(field: String, files: [Upload]!, ref: String, refId: ID): [UploadFileEntityResponse]!
+  multipleUpload(
+    field: String
+    files: [Upload]!
+    ref: String
+    refId: ID
+  ): [UploadFileEntityResponse]!
 
-  """Register a user"""
+  """
+  Register a user
+  """
   register(input: UsersPermissionsRegisterInput!): UsersPermissionsLoginPayload!
   removeFile(id: ID!): UploadFileEntityResponse
 
   """
   Reset user password. Confirm with a code (resetToken from forgotPassword)
   """
-  resetPassword(code: String!, password: String!, passwordConfirmation: String!): UsersPermissionsLoginPayload
+  resetPassword(
+    code: String!
+    password: String!
+    passwordConfirmation: String!
+  ): UsersPermissionsLoginPayload
   updateAbout(data: AboutInput!, locale: I18NLocaleCode): AboutEntityResponse
+  updateEmployer(
+    data: EmployerInput!
+    id: ID!
+    locale: I18NLocaleCode
+  ): EmployerEntityResponse
+  updateExperience(
+    data: ExperienceInput!
+    id: ID!
+    locale: I18NLocaleCode
+  ): ExperienceEntityResponse
   updateFileInfo(id: ID!, info: FileInfoInput): UploadFileEntityResponse!
-  updateHome(data: HomeInput!, locale: I18NLocaleCode): HomeEntityResponse
-  updateRoute(data: RouteInput!, id: ID!, locale: I18NLocaleCode): RouteEntityResponse
+  updateHeader(data: HeaderInput!, locale: I18NLocaleCode): HeaderEntityResponse
+  updateHeading(
+    data: HeadingInput!
+    id: ID!
+    locale: I18NLocaleCode
+  ): HeadingEntityResponse
+  updateProject(
+    data: ProjectInput!
+    id: ID!
+    locale: I18NLocaleCode
+  ): ProjectEntityResponse
   updateTechnology(data: TechnologyInput!, id: ID!): TechnologyEntityResponse
   updateUploadFile(data: UploadFileInput!, id: ID!): UploadFileEntityResponse
-  updateUploadFolder(data: UploadFolderInput!, id: ID!): UploadFolderEntityResponse
+  updateUploadFolder(
+    data: UploadFolderInput!
+    id: ID!
+  ): UploadFolderEntityResponse
 
-  """Update an existing role"""
-  updateUsersPermissionsRole(data: UsersPermissionsRoleInput!, id: ID!): UsersPermissionsUpdateRolePayload
+  """
+  Update an existing role
+  """
+  updateUsersPermissionsRole(
+    data: UsersPermissionsRoleInput!
+    id: ID!
+  ): UsersPermissionsUpdateRolePayload
 
-  """Update an existing user"""
-  updateUsersPermissionsUser(data: UsersPermissionsUserInput!, id: ID!): UsersPermissionsUserEntityResponse!
-  upload(field: String, file: Upload!, info: FileInfoInput, ref: String, refId: ID): UploadFileEntityResponse!
+  """
+  Update an existing user
+  """
+  updateUsersPermissionsUser(
+    data: UsersPermissionsUserInput!
+    id: ID!
+  ): UsersPermissionsUserEntityResponse!
+  upload(
+    field: String
+    file: Upload!
+    info: FileInfoInput
+    ref: String
+    refId: ID
+  ): UploadFileEntityResponse!
 }
 
 type Pagination {
@@ -339,84 +690,157 @@ input PaginationArg {
   start: Int
 }
 
+type Project {
+  createdAt: DateTime
+  description: String!
+  image: UploadFileEntityResponse!
+  locale: String
+  localizations(
+    filters: ProjectFiltersInput
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): ProjectRelationResponseCollection
+  name: String!
+  publishedAt: DateTime
+  technologies(
+    filters: TechnologyFiltersInput
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): TechnologyRelationResponseCollection
+  updatedAt: DateTime
+}
+
+type ProjectEntity {
+  attributes: Project
+  id: ID
+}
+
+type ProjectEntityResponse {
+  data: ProjectEntity
+}
+
+type ProjectEntityResponseCollection {
+  data: [ProjectEntity!]!
+  meta: ResponseCollectionMeta!
+}
+
+input ProjectFiltersInput {
+  and: [ProjectFiltersInput]
+  createdAt: DateTimeFilterInput
+  description: StringFilterInput
+  id: IDFilterInput
+  locale: StringFilterInput
+  localizations: ProjectFiltersInput
+  name: StringFilterInput
+  not: ProjectFiltersInput
+  or: [ProjectFiltersInput]
+  publishedAt: DateTimeFilterInput
+  technologies: TechnologyFiltersInput
+  updatedAt: DateTimeFilterInput
+}
+
+input ProjectInput {
+  description: String
+  image: ID
+  name: String
+  publishedAt: DateTime
+  technologies: [ID]
+}
+
+type ProjectRelationResponseCollection {
+  data: [ProjectEntity!]!
+}
+
 enum PublicationState {
   LIVE
   PREVIEW
 }
 
 type Query {
-  about(locale: I18NLocaleCode, publicationState: PublicationState = LIVE): AboutEntityResponse
-  home(locale: I18NLocaleCode, publicationState: PublicationState = LIVE): HomeEntityResponse
+  about(
+    locale: I18NLocaleCode
+    publicationState: PublicationState = LIVE
+  ): AboutEntityResponse
+  employer(id: ID, locale: I18NLocaleCode): EmployerEntityResponse
+  employers(
+    filters: EmployerFiltersInput
+    locale: I18NLocaleCode
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): EmployerEntityResponseCollection
+  experience(id: ID, locale: I18NLocaleCode): ExperienceEntityResponse
+  experiences(
+    filters: ExperienceFiltersInput
+    locale: I18NLocaleCode
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): ExperienceEntityResponseCollection
+  header(
+    locale: I18NLocaleCode
+    publicationState: PublicationState = LIVE
+  ): HeaderEntityResponse
+  heading(id: ID, locale: I18NLocaleCode): HeadingEntityResponse
+  headings(
+    filters: HeadingFiltersInput
+    locale: I18NLocaleCode
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): HeadingEntityResponseCollection
   i18NLocale(id: ID): I18NLocaleEntityResponse
-  i18NLocales(filters: I18NLocaleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): I18NLocaleEntityResponseCollection
+  i18NLocales(
+    filters: I18NLocaleFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): I18NLocaleEntityResponseCollection
   me: UsersPermissionsMe
-  route(id: ID, locale: I18NLocaleCode): RouteEntityResponse
-  routes(filters: RouteFiltersInput, locale: I18NLocaleCode, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): RouteEntityResponseCollection
-  technologies(filters: TechnologyFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): TechnologyEntityResponseCollection
+  project(id: ID, locale: I18NLocaleCode): ProjectEntityResponse
+  projects(
+    filters: ProjectFiltersInput
+    locale: I18NLocaleCode
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): ProjectEntityResponseCollection
+  technologies(
+    filters: TechnologyFiltersInput
+    pagination: PaginationArg = {}
+    publicationState: PublicationState = LIVE
+    sort: [String] = []
+  ): TechnologyEntityResponseCollection
   technology(id: ID): TechnologyEntityResponse
   uploadFile(id: ID): UploadFileEntityResponse
-  uploadFiles(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileEntityResponseCollection
+  uploadFiles(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileEntityResponseCollection
   uploadFolder(id: ID): UploadFolderEntityResponse
-  uploadFolders(filters: UploadFolderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFolderEntityResponseCollection
+  uploadFolders(
+    filters: UploadFolderFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFolderEntityResponseCollection
   usersPermissionsRole(id: ID): UsersPermissionsRoleEntityResponse
-  usersPermissionsRoles(filters: UsersPermissionsRoleFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsRoleEntityResponseCollection
+  usersPermissionsRoles(
+    filters: UsersPermissionsRoleFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsRoleEntityResponseCollection
   usersPermissionsUser(id: ID): UsersPermissionsUserEntityResponse
-  usersPermissionsUsers(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserEntityResponseCollection
+  usersPermissionsUsers(
+    filters: UsersPermissionsUserFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsUserEntityResponseCollection
 }
 
 type ResponseCollectionMeta {
   pagination: Pagination!
-}
-
-type Route {
-  componentName: String!
-  createdAt: DateTime
-  heading: String!
-  locale: String
-  localizations(filters: RouteFiltersInput, pagination: PaginationArg = {}, publicationState: PublicationState = LIVE, sort: [String] = []): RouteRelationResponseCollection
-  pathName: String!
-  publishedAt: DateTime
-  updatedAt: DateTime
-}
-
-type RouteEntity {
-  attributes: Route
-  id: ID
-}
-
-type RouteEntityResponse {
-  data: RouteEntity
-}
-
-type RouteEntityResponseCollection {
-  data: [RouteEntity!]!
-  meta: ResponseCollectionMeta!
-}
-
-input RouteFiltersInput {
-  and: [RouteFiltersInput]
-  componentName: StringFilterInput
-  createdAt: DateTimeFilterInput
-  heading: StringFilterInput
-  id: IDFilterInput
-  locale: StringFilterInput
-  localizations: RouteFiltersInput
-  not: RouteFiltersInput
-  or: [RouteFiltersInput]
-  pathName: StringFilterInput
-  publishedAt: DateTimeFilterInput
-  updatedAt: DateTimeFilterInput
-}
-
-input RouteInput {
-  componentName: String
-  heading: String
-  pathName: String
-  publishedAt: DateTime
-}
-
-type RouteRelationResponseCollection {
-  data: [RouteEntity!]!
 }
 
 input StringFilterInput {
@@ -483,7 +907,13 @@ input TechnologyInput {
   uid: String
 }
 
-"""The `Upload` scalar type represents a file upload."""
+type TechnologyRelationResponseCollection {
+  data: [TechnologyEntity!]!
+}
+
+"""
+The `Upload` scalar type represents a file upload.
+"""
 scalar Upload
 
 type UploadFile {
@@ -569,9 +999,17 @@ type UploadFileRelationResponseCollection {
 }
 
 type UploadFolder {
-  children(filters: UploadFolderFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFolderRelationResponseCollection
+  children(
+    filters: UploadFolderFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFolderRelationResponseCollection
   createdAt: DateTime
-  files(filters: UploadFileFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UploadFileRelationResponseCollection
+  files(
+    filters: UploadFileFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UploadFileRelationResponseCollection
   name: String!
   parent: UploadFolderEntityResponse
   path: String!
@@ -697,10 +1135,18 @@ type UsersPermissionsRole {
   createdAt: DateTime
   description: String
   name: String!
-  permissions(filters: UsersPermissionsPermissionFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsPermissionRelationResponseCollection
+  permissions(
+    filters: UsersPermissionsPermissionFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsPermissionRelationResponseCollection
   type: String
   updatedAt: DateTime
-  users(filters: UsersPermissionsUserFiltersInput, pagination: PaginationArg = {}, sort: [String] = []): UsersPermissionsUserRelationResponseCollection
+  users(
+    filters: UsersPermissionsUserFiltersInput
+    pagination: PaginationArg = {}
+    sort: [String] = []
+  ): UsersPermissionsUserRelationResponseCollection
 }
 
 type UsersPermissionsRoleEntity {

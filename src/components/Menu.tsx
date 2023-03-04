@@ -1,16 +1,22 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { Link, animateScroll as scroll } from 'react-scroll';
+import {
+  HeadingEntity,
+  HeadingEntityResponse,
+  HeadingEntityResponseCollection,
+} from '../graphql/schema';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
 import { MenuType } from '../types';
 import XIcon from './icons/XIcon';
 import Typography from './Typography';
 
 interface MenuProps {
-  sections: MenuType[];
+  headings?: HeadingEntity[];
 }
 
-export default function Menu({ sections }: MenuProps) {
+export default function Menu({ headings }: MenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -63,16 +69,21 @@ export default function Menu({ sections }: MenuProps) {
               'menu__list--open': isOpen,
             })}
           >
-            {sections?.map((section) => (
-              <a
-                key={section.id}
+            {headings?.map((heading) => (
+              <Link
+                key={heading.id}
                 className="menu__item"
-                href={`#${section.id}`}
+                activeClass="active"
+                to={heading.attributes?.sectionId || ''}
+                spy
+                smooth
+                offset={-70}
+                duration={500}
               >
                 <Typography variant="menu" element="span">
-                  {section.heading}
+                  {heading.attributes?.heading}
                 </Typography>
-              </a>
+              </Link>
             ))}
             <a href="/assets/CV.pdf" target="_blank" className="menu__item">
               <Typography variant="menu" element="span">

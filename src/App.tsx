@@ -1,43 +1,29 @@
 import { useEffect, useState } from 'react';
-import Header from './components/Header';
 import Loader from './components/Loader';
 import Menu from './components/Menu';
 import Page from './components/Page';
+import { useData } from './graphql/queries';
+import { HeadingEntity } from './graphql/schema';
 
 function App() {
-  const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
+
+  const { data, loading, error } = useData();
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }, []);
+    setShowLoader(loading);
+  }, [loading]);
 
-  const sections = [
-    {
-      id: 'about',
-      heading: 'About',
-    },
-    {
-      id: 'experience',
-      heading: 'Experience',
-    },
-    {
-      id: 'projects',
-      heading: 'Projects',
-    },
-    {
-      id: 'contact',
-      heading: 'Contact',
-    },
-  ];
+  if (error) {
+    return <div>Something went wrong</div>;
+  }
 
-  return loading ? (
+  return showLoader ? (
     <Loader />
   ) : (
     <>
       <Page />
-      <Menu sections={sections} />
+      <Menu headings={(data?.headings?.data as HeadingEntity[]) || undefined} />
     </>
   );
 }

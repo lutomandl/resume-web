@@ -52,6 +52,7 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/require-default-props': 'off',
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
   },
   ignorePatterns: ['/node_modules/**/*.*', '**/graphql/**/*.ts'],
   settings: {

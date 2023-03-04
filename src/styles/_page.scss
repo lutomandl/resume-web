@@ -3,7 +3,7 @@
 .page {
   position: relative;
   top: config.$menu-height-xs;
-  padding: 0 1vmin;
+  padding: 0 1vmin 5vmin 1vmin;
   min-height: calc(100vh - #{config.$menu-height-xs});
 
   @media (min-width: config.$breakpoint-md) {

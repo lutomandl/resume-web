@@ -3,7 +3,7 @@ import '../../public/assets/IMG_9315.jpg';
 
 export default function About() {
   return (
-    <section className="about">
+    <section className="about" id="about">
       <Typography
         className="about__heading"
         variant="heading-bold"
