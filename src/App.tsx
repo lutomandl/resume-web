@@ -2,16 +2,18 @@ import { useEffect, useState } from 'react';
 import Loader from './components/Loader';
 import Menu from './components/Menu';
 import Page from './components/Page';
-import { useData } from './graphql/queries';
+import { useStrapiContentContext } from './contexts/StrapiContentProvider';
 import { HeadingEntity } from './graphql/schema';
 
 function App() {
   const [showLoader, setShowLoader] = useState(true);
 
-  const { data, loading, error } = useData();
+  const { data, loading, error } = useStrapiContentContext();
 
   useEffect(() => {
-    setShowLoader(loading);
+    setTimeout(() => {
+      setShowLoader(loading);
+    }, 2000);
   }, [loading]);
 
   if (error) {

@@ -1,14 +1,9 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Link, animateScroll as scroll } from 'react-scroll';
-import {
-  HeadingEntity,
-  HeadingEntityResponse,
-  HeadingEntityResponseCollection,
-} from '../graphql/schema';
+import { Link } from 'react-scroll';
+import { HeadingEntity } from '../graphql/schema';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
-import { MenuType } from '../types';
 import XIcon from './icons/XIcon';
 import Typography from './Typography';
 

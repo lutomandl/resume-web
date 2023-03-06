@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
+import { useStrapiContentContext } from '../contexts/StrapiContentProvider';
 import Typography from './Typography';
 
 export default function Header() {
+  const { data } = useStrapiContentContext();
+  const { name, profession, residence } = data?.header?.data?.attributes || {};
   return (
     <section className="header" id="header">
       <motion.div
@@ -11,7 +14,7 @@ export default function Header() {
         transition={{ ease: 'anticipate', duration: 2 }}
       >
         <Typography element="h1" align="right" variant="heading-bold">
-          Lubos Tomandl
+          {name}
         </Typography>
       </motion.div>
       <motion.div
@@ -21,7 +24,7 @@ export default function Header() {
         transition={{ ease: 'anticipate', duration: 2, delay: 0.1 }}
       >
         <Typography element="h1" variant="heading-regular">
-          Frontend Developer
+          {profession}
         </Typography>
       </motion.div>
       <motion.div
@@ -31,7 +34,7 @@ export default function Header() {
         transition={{ ease: 'anticipate', duration: 2, delay: 0.3 }}
       >
         <Typography element="h1" align="right" variant="heading-light">
-          Berlin, DE
+          {residence}
         </Typography>
       </motion.div>
     </section>

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import Typography from './Typography';
 
 export default function Loader() {
   return (
