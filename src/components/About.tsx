@@ -1,5 +1,6 @@
+import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import Typography from './Typography';
-import '../../public/assets/IMG_9315.jpg';
 import { useStrapiContentContext } from '../contexts/StrapiContentProvider';
 
 export default function About() {
@@ -9,23 +10,58 @@ export default function About() {
 
   return (
     <section className="about" id={heading?.data?.attributes?.sectionId}>
-      <Typography
-        className="about__heading"
-        variant="heading-bold"
-        element="h2"
-        align="right"
+      <motion.div
+        initial={{ x: -100, opacity: 0 }}
+        whileInView={{ x: 0, opacity: 1 }}
+        transition={{ ease: 'anticipate', duration: 1.5 }}
+        viewport={{ once: true }}
       >
-        {heading?.data?.attributes?.heading}
-      </Typography>
+        <Typography
+          className="about__heading"
+          variant="heading-bold"
+          element="h2"
+          align="right"
+        >
+          {heading?.data?.attributes?.heading}
+        </Typography>
+      </motion.div>
       <div className="about__content">
         <article className="about__article">
-          <Typography className="about__text">{firstParagraph}</Typography>
-          <Typography className="about__text about__text--right" align="right">
-            {secondParagraph}
-          </Typography>
-          <Typography className="about__text">{thirdParagraph}</Typography>
+          <motion.div
+            className="about__text"
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ ease: 'anticipate', duration: 1.5 }}
+            viewport={{ once: true }}
+          >
+            <Typography>{firstParagraph}</Typography>
+          </motion.div>
+          <motion.div
+            className="about__text about__text--right"
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ ease: 'anticipate', duration: 1.5 }}
+            viewport={{ once: true }}
+          >
+            <Typography align="right">{secondParagraph}</Typography>
+          </motion.div>
+          <motion.div
+            className="about__text"
+            initial={{ x: 100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ ease: 'anticipate', duration: 1.5 }}
+            viewport={{ once: true }}
+          >
+            <Typography>{thirdParagraph}</Typography>
+          </motion.div>
         </article>
-        <div className="about__image-container">
+        <motion.div
+          className="about__image-container"
+          initial={{ y: 100, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ ease: 'anticipate', duration: 1.5 }}
+          viewport={{ once: true }}
+        >
           <img
             className="about__image"
             loading="lazy"
@@ -35,7 +71,7 @@ export default function About() {
             }
             alt={image?.data?.attributes?.alternativeText || 'me'}
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
