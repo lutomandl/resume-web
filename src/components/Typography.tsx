@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import { HTMLAttributes, ReactNode } from 'react';
 
 interface TypographyProps extends HTMLAttributes<HTMLElement> {
