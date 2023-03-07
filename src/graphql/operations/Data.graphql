@@ -1,0 +1,46 @@
+query Data {
+  header {
+    data {
+      attributes {
+        name
+        profession
+        residence
+      }
+    }
+  }
+  about {
+    data {
+      attributes {
+        firstParagraph
+        secondParagraph
+        thirdParagraph
+        image {
+          data {
+            attributes {
+              url
+              alternativeText
+              formats
+            }
+          }
+        }
+        heading {
+          data {
+            attributes {
+              heading
+              sectionId
+            }
+          }
+        }
+      }
+    }
+  }
+  headings(sort: "id:asc") {
+    data {
+      id
+      attributes {
+        heading
+        sectionId
+      }
+    }
+  }
+}

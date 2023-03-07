@@ -4,20 +4,23 @@
 @use 'config';
 
 @use 'about';
-@use 'heading';
-@use 'home';
+@use 'header';
+@use 'icon';
+@use 'loader';
 @use 'menu';
 @use 'page';
+@use 'typography';
+@use 'more';
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: config.$bg-color;
-  font-family: config.$font-paragraphs;
   color: config.$text-color;
-  font-size: config.$font-base-size;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 500;
+  scroll-behavior: smooth;
 }
 
 a {

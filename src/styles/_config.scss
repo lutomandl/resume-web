@@ -1,6 +1,6 @@
 //colors
 $bg-color: rgba(227, 219, 209, 1);
-$text-color: rgba(0, 0, 0, 1);
+$text-color: rgba(39, 39, 39, 1);
 
 //breakpoints
 $breakpoint-xs: 320px;
@@ -9,15 +9,10 @@ $breakpoint-md: 768px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;
 
-//fonts
-$font-paragraphs: 'Amulya', sans-serif; //TODO find better font
-$font-headings: 'New Title', sans-serif;
-$font-base-size: 40px;
-
 //sizes
-$header-height-md: 15vmin;
-$header-height-xs: 25vmin;
+$menu-height-xs: 23vmin;
+$menu-height-md: 15vmin;
+$menu-icon-size-xs: 13vmin;
 $menu-icon-size-md: 10vmin;
-$menu-icon-size-xs: 12vmin;
-$header-padding-md: 2.5vmin;
-$header-padding-xs: 5vmin;
+$menu-padding-xs: 5vmin;
+$menu-padding-md: 2.5vmin;

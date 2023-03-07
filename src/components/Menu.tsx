@@ -1,10 +1,17 @@
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-scroll';
+import { HeadingEntity } from '../graphql/schema';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
+import XIcon from './icons/XIcon';
+import Typography from './Typography';
 
-export default function Menu() {
+interface MenuProps {
+  headings?: HeadingEntity[];
+}
+
+export default function Menu({ headings }: MenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -23,52 +30,64 @@ export default function Menu() {
   useClickOutsideListener(wrapperRef, handleClickOutside);
 
   return (
-    <header
-      className={clsx('menu', {
-        'menu--open': isOpen,
-      })}
-      ref={wrapperRef}
+    <motion.div
+      animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }}
+      transition={{ ease: 'anticipate', delay: 1, duration: 2 }}
     >
-      <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        className="menu__container"
+      <nav
+        className={clsx('menu', {
+          'menu--open': isOpen,
+        })}
+        ref={wrapperRef}
       >
-        <motion.div
-          animate={{ opacity: 1 }}
-          initial={{ opacity: 0 }}
-          transition={{ ease: 'anticipate', delay: 4, duration: 2 }}
-        >
-          <Link to="/">
-            <div
-              className={clsx('menu__icon', {
-                'menu__icon--open': isOpen,
-              })}
-            ></div>
-          </Link>
-        </motion.div>
-        <nav
-          className={clsx('menu__list', {
-            'menu__list--open': isOpen,
+        <div
+          className={clsx('menu__icon', {
+            'menu__icon--open': isOpen,
           })}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        />
+
+        <div
+          className={clsx('menu__overlay', {
+            'menu__overlay--open': isOpen,
+          })}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
-          <Link className="menu__item" to="/about">
-            About
-          </Link>
-          <Link className="menu__item" to="/projects">
-            Projects
-          </Link>
-          <Link className="menu__item" to="/experience">
-            Exeprience
-          </Link>
-          <Link className="menu__item" to="/contact">
-            Contact
-          </Link>
-          <a href="/assets/CV.pdf" target="_blank" className="menu__item">
-            CV
-          </a>
-        </nav>
-      </div>
-    </header>
+          {isOpen && (
+            <XIcon className="menu__x" onClick={() => setIsOpen(false)} />
+          )}
+          <div
+            className={clsx('menu__list', {
+              'menu__list--open': isOpen,
+            })}
+          >
+            {headings?.map((heading) => (
+              <Link
+                key={heading.id}
+                className="menu__item"
+                activeClass="active"
+                to={heading.attributes?.sectionId || ''}
+                spy
+                smooth
+                offset={-70}
+                duration={500}
+              >
+                <Typography variant="menu" element="span">
+                  {heading.attributes?.heading}
+                </Typography>
+              </Link>
+            ))}
+            <a href="/assets/CV.pdf" target="_blank" className="menu__item">
+              <Typography variant="menu" element="span">
+                CV
+              </Typography>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </motion.div>
   );
 }

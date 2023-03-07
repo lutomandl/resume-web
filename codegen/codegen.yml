@@ -1,0 +1,28 @@
+overwrite: true
+schema: 'http://localhost:1337/graphql'
+#schema: "http://nccom.test/graphql"
+documents: 'src/graphql/operations/*.graphql'
+generates:
+  src/graphql/local/schema.graphql:
+    plugins:
+      - add:
+          content: "# NOTE : This file is a copy of the servers schema.\n\n"
+      - schema-ast
+  src/graphql/schema.ts:
+    plugins:
+      - add:
+          content: "// DO NOT EDIT!\n// THIS FILE IS GENERATED WITH GRAPH GL CODEGEN.\n"
+      - typescript
+      - typescript-operations
+    config:
+      avoidOptionals:
+        field: true
+      maybeValue: T | null
+  src/graphql/queries.ts:
+    plugins:
+      - add:
+          content: "// DO NOT EDIT!\n// THIS FILE IS GENERATED WITH GRAPH GL CODEGEN.\n"
+      - codegen/resume-gql-transform.cjs
+hooks:
+  afterAllFileWrite:
+    - prettier --write

@@ -2,12 +2,12 @@
 
 .page {
   position: relative;
-  top: config.$header-height-xs;
-  padding: 0 1vmin;
-  min-height: calc(100vh - #{config.$header-height-xs});
+  top: config.$menu-height-xs;
+  padding: 0 1vmin 5vmin 1vmin;
+  min-height: calc(100vh - #{config.$menu-height-xs});
 
   @media (min-width: config.$breakpoint-md) {
-    top: config.$header-height-md;
-    min-height: calc(100vh - #{config.$header-height-md});
+    top: config.$menu-height-md;
+    min-height: calc(100vh - #{config.$menu-height-md});
   }
 }
