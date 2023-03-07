@@ -2,6 +2,8 @@
 
 This project is my resume website. It's a React app built with [Vite](https://vitejs.dev/), the content is created in [Strapi.io](https://strapi.io/) applicatione (repo [here](https://github.com/lutomandl/resume-web-strapi)) and consumed view GraphQL.
 
+![website](/public/assets/screenshot.png)
+
 ## Run the project
 
 First of all install all dependencies:
