@@ -1,5 +1,4 @@
-import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import Typography from './Typography';
 import { useStrapiContentContext } from '../contexts/StrapiContentProvider';
 
