@@ -63,6 +63,7 @@
     &--open {
       transform: translateY(0) translateX(0);
       opacity: 1;
+      background-color: rgba(config.$bg-color, 0.7);
     }
   }
 
