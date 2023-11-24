@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion';
-import { useStrapiContentContext } from '../contexts/StrapiContentProvider';
+import { useTranslationsContext } from '../contexts/TranslationsProvider';
 import Typography from './Typography';
 
 export default function Header() {
-  const { data } = useStrapiContentContext();
-  const { name, profession, residence } = data?.header?.data?.attributes || {};
+  const { translations } = useTranslationsContext();
+  const { name, title, city } = translations.header;
   return (
     <section className="header" id="header">
       <motion.div
@@ -24,7 +24,7 @@ export default function Header() {
         transition={{ ease: 'anticipate', duration: 2, delay: 0.1 }}
       >
         <Typography element="h1" variant="heading-regular">
-          {profession}
+          {title}
         </Typography>
       </motion.div>
       <motion.div
@@ -34,7 +34,7 @@ export default function Header() {
         transition={{ ease: 'anticipate', duration: 2, delay: 0.3 }}
       >
         <Typography element="h1" align="right" variant="heading-light">
-          {residence}
+          {city}
         </Typography>
       </motion.div>
     </section>

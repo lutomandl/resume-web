@@ -1,13 +1,8 @@
-import { APIError } from 'graphql-hooks';
-import { DataQuery } from './graphql/schema';
+export type LanguageEnum = 'en' | 'de' | 'cs';
 
-export interface GraphQlError {
-  message: string;
-  [index: string]: unknown;
-}
-
-export interface StrapiContentContext {
-  data: DataQuery | null;
-  error: APIError<GraphQlError> | null;
-  loading: boolean;
-}
+export type MenuItems = {
+  about: string;
+  //   experience: string;
+  //   projects: string;
+  //   contact: string;
+};

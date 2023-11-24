@@ -2,16 +2,16 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { Link } from 'react-scroll';
-import { HeadingEntity } from '../graphql/schema';
 import useClickOutsideListener from '../hooks/useClickOutsideListener';
 import XIcon from './icons/XIcon';
 import Typography from './Typography';
+import { MenuItems } from '../types';
 
 interface MenuProps {
-  headings?: HeadingEntity[];
+  items: MenuItems;
 }
 
-export default function Menu({ headings }: MenuProps) {
+export default function Menu({ items }: MenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseEnter = () => {
@@ -64,19 +64,19 @@ export default function Menu({ headings }: MenuProps) {
               'menu__list--open': isOpen,
             })}
           >
-            {headings?.map((heading) => (
+            {Object.entries(items).map(([key, value]) => (
               <Link
-                key={heading.id}
+                key={key}
                 className="menu__item"
                 activeClass="active"
-                to={heading.attributes?.sectionId || ''}
+                to={key}
                 spy
                 smooth
                 offset={-70}
                 duration={500}
               >
                 <Typography variant="menu" element="span">
-                  {heading.attributes?.heading}
+                  {value}
                 </Typography>
               </Link>
             ))}
