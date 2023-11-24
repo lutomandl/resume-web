@@ -1,14 +1,14 @@
 import { motion } from 'framer-motion';
 import Typography from './Typography';
-import { useStrapiContentContext } from '../contexts/StrapiContentProvider';
+import { useTranslationsContext } from '../contexts/TranslationsProvider';
 
 export default function About() {
-  const { data } = useStrapiContentContext();
-  const { firstParagraph, secondParagraph, thirdParagraph, image, heading } =
-    data?.about?.data?.attributes || {};
+  const { translations } = useTranslationsContext();
+  const { firstParagraph, secondParagraph, thirdParagraph, heading } =
+    translations.about;
 
   return (
-    <section className="about" id={heading?.data?.attributes?.sectionId}>
+    <section className="about" id="about">
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
@@ -21,7 +21,7 @@ export default function About() {
           element="h2"
           align="right"
         >
-          {heading?.data?.attributes?.heading}
+          {heading}
         </Typography>
       </motion.div>
       <div className="about__content">
@@ -64,11 +64,8 @@ export default function About() {
           <img
             className="about__image"
             loading="lazy"
-            src={
-              import.meta.env.VITE_STRAPI_URL +
-              (image?.data?.attributes?.url || '')
-            }
-            alt={image?.data?.attributes?.alternativeText || 'me'}
+            src="/assets/about_image.webp"
+            alt="me and my son"
           />
         </motion.div>
       </div>
