@@ -14,14 +14,6 @@ npm i
 yarn
 ```
 
-Then you need to generate GraphQL queries and schema:
-
-```
-npm run gql:generate
-# or
-yarn gql:generate
-```
-
 ### `dev`
 
 Runs `vite` script, which runs the project locally, automatically reloading after every change.
