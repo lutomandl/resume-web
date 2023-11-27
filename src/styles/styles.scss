@@ -11,6 +11,11 @@
 @use 'typography';
 @use 'more';
 
+html,
+body {
+  max-width: 100%;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -20,7 +25,6 @@ body {
   font-size: 16px;
   font-weight: 500;
   scroll-behavior: smooth;
-  max-width: 100vw;
 }
 
 a {
