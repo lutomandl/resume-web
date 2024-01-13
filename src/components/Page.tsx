@@ -1,4 +1,5 @@
 import About from './About';
+import Contact from './Contact';
 import Header from './Header';
 import More from './More';
 
@@ -7,6 +8,7 @@ export default function Page() {
     <main className="page">
       <Header />
       <About />
+      <Contact />
       <More />
     </main>
   );

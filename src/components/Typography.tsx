@@ -8,7 +8,8 @@ interface TypographyProps extends HTMLAttributes<HTMLElement> {
     | 'heading-bold'
     | 'heading-regular'
     | 'heading-light'
-    | 'menu';
+    | 'menu'
+    | 'label';
   align?: 'left' | 'center' | 'right';
   className?: string;
 }

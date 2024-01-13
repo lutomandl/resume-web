@@ -52,6 +52,16 @@
     }
   }
 
+  &--label {
+    font-family: 'Clash Display', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    @media (min-width: config.$breakpoint-md) {
+      font-size: 1.8rem;
+    }
+  }
+
   &--left {
     text-align: left;
   }
