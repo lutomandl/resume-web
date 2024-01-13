@@ -2,6 +2,8 @@
 
 This project is my resume website. It's a React app built with [Vite](https://vitejs.dev/).
 
+You can visit live version of this website [here](https://www.lubostomandl.eu/).
+
 ![website](/public/assets/screenshot.png)
 
 ## Run the project
