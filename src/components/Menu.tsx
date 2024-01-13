@@ -6,6 +6,7 @@ import useClickOutsideListener from '../hooks/useClickOutsideListener';
 import XIcon from './icons/XIcon';
 import Typography from './Typography';
 import { MenuItems } from '../types';
+import LanguagePicker from './LanguagePicker';
 
 interface MenuProps {
   items: MenuItems;
@@ -86,6 +87,7 @@ export default function Menu({ items }: MenuProps) {
               </Typography>
             </a>
           </div>
+          <LanguagePicker />
         </div>
       </nav>
     </motion.div>
