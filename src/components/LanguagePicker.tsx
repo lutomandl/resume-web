@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useTranslationsContext } from '../contexts/TranslationsProvider';
+import Typography from './Typography';
 
 export default function LanguagePicker() {
   const { language, changeLanguage } = useTranslationsContext();
@@ -12,23 +13,25 @@ export default function LanguagePicker() {
         })}
         onClick={() => changeLanguage('en')}
       >
-        EN
+        <Typography>EN</Typography>
       </button>
+      <div className="languagePicker__separator" />
       <button
         className={clsx('languagePicker__button', {
           'languagePicker__button--active': language === 'de',
         })}
         onClick={() => changeLanguage('de')}
       >
-        DE
+        <Typography>DE</Typography>
       </button>
+      <div className="languagePicker__separator" />
       <button
         className={clsx('languagePicker__button', {
           'languagePicker__button--active': language === 'cs',
         })}
         onClick={() => changeLanguage('cs')}
       >
-        CS
+        <Typography>CS</Typography>
       </button>
     </div>
   );

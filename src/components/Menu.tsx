@@ -75,6 +75,7 @@ export default function Menu({ items }: MenuProps) {
                 smooth
                 offset={-70}
                 duration={500}
+                onClick={() => setIsOpen(false)}
               >
                 <Typography variant="menu" element="span">
                   {value}
