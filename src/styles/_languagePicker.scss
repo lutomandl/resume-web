@@ -1,0 +1,50 @@
+@use 'config';
+
+.languagePicker {
+  padding: config.$menu-padding-xs;
+  display: flex;
+  flex-direction: row;
+  gap: 1vmin;
+  align-items: center;
+  z-index: 2;
+
+  @media (min-width: config.$breakpoint-md) {
+    padding: config.$menu-padding-md;
+  }
+
+  &__separator {
+    position: relative;
+    width: 0.5vmin;
+    height: 100%;
+
+    &::after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      border-left: 0.5vmin solid black;
+    }
+
+    @media (min-width: config.$breakpoint-md) {
+      height: 20%;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+
+    &--active {
+      position: relative;
+      top: 0.25vmin;
+
+      &::after {
+        content: '';
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 0.5vmin;
+        background-color: config.$text-color;
+      }
+    }
+  }
+}

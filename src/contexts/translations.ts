@@ -43,17 +43,17 @@ export const translations: Translations = {
     },
     header: {
       name: 'Lubos Tomandl',
-      title: 'Frontend Engineer',
+      title: 'Software Engineer',
       city: 'Berlin, DE',
     },
     about: {
       heading: 'About me',
       firstParagraph:
-        'Hey there! My name is Lubos and I am a frontend engineer based in Berlin, Germany. My main focus is on building modern web applications using React and TypeScript, but I also have experience with Svelte or Vue.',
+        'Hey there! My name is Lubos and I am a software engineer based in Berlin, Germany. I am happy you found your way to my website.',
       secondParagraph:
-        'When I am not coding, I enjoy reading philosophy or theology or playing guitar. I have also recently discovered the thrill of bouldering. ',
+        'I focus on building modern web applications using React and TypeScript, but I also have experience with Svelte or Vue.',
       thirdParagraph:
-        'Thanks for stopping by my website! If you want to talk coding, books, or have a coffee – just give me a shout!',
+        'Before becoming a developer, I worked for about six years as a business analyst, which provides me with a solid understanding of the software development lifecycle and agile workflows as well as insight into customer and user perspectives. I thrive in a collaborative environment and enjoy working with people from different backgrounds.',
     },
     contactForm: {
       name: 'Name',
@@ -80,17 +80,17 @@ export const translations: Translations = {
     },
     header: {
       name: 'Lubos Tomandl',
-      title: 'Frontend Engineer',
+      title: 'Software Engineer',
       city: 'Berlin, DE',
     },
     about: {
       heading: 'Über mich',
       firstParagraph:
-        'Hallo! Ich bin Lubos und ich bin ein Frontend Engineer in Berlin, Deutschland. Ich konzentriere mich auf den Bau moderner Webanwendungen mit React und TypeScript, habe aber auch Erfahrung mit Svelte oder Vue.',
+        'Hallo! Ich bin Lubos und ich bin ein Software Engineer in Berlin, Deutschland. Ich bin froh, dass Sie den Weg zu meiner Website gefunden haben.',
       secondParagraph:
-        'Wenn ich nicht programmiere, lese ich gerne Philosophie oder Theologie oder spiele Gitarre. Ich habe auch kürzlich den Nervenkitzel des Boulderns entdeckt.',
+        'Ich konzentriere mich auf den Bau moderner Webanwendungen mit React und TypeScript, habe aber auch Erfahrung mit Svelte oder Vue.',
       thirdParagraph:
-        'Vielen Dank, dass Sie meine Website besucht haben! Wenn Sie über Programmierung, Bücher sprechen oder einen Kaffee trinken möchten - melden Sie sich einfach!',
+        'Vor meiner Tätigkeit als Entwickler habe ich etwa sechs Jahre als Business Analyst gearbeitet, was mir ein solides Verständnis des Softwareentwicklungszyklus und agiler Workflows sowie Einblicke in Kunden- und Benutzerperspektiven ermöglicht. Ich gedeihe in einer kollaborativen Umgebung und arbeite gerne mit Menschen aus verschiedenen Hintergründen zusammen.',
     },
     contactForm: {
       name: 'Name',
@@ -118,17 +118,17 @@ export const translations: Translations = {
     },
     header: {
       name: 'Luboš Tomandl',
-      title: 'Frontend Engineer',
+      title: 'Software Engineer',
       city: 'Berlín, DE',
     },
     about: {
       heading: 'O mně',
       firstParagraph:
-        'Ahoj! Jmenuju se Luboš a jsem frontend engineer, momentálně žijící v Berlíně. Zaměřuju se na vývoj moderních webových aplikací pomocí Reactu a TypeScriptu, ale mám také zkušenosti se Svelte nebo Vue.',
+        'Ahoj! Jmenuju se Luboš a jsem frontend engineer, momentálně žijící v Berlíně. Jsem rád, že jste našli cestu na můj web.',
       secondParagraph:
-        'Když zrovna neprogramuju, rád čtu filozofii, teologii nebo hraju na kytaru. Nedávno jsem také objevil krásu boulderingu.',
+        'Zaměřuji se na vývoj moderních webových aplikací s využitím Reactu a TypeScriptu, ale mám také zkušenosti s Vue nebo Svelte.',
       thirdParagraph:
-        'Díky, že jste navštívili mojí webovou stránku! Pokud chcete pokecat o programování, knížkých nebo zajít na kafe - stačí mi dát vědět!',
+        'Předtím, než jsem se stal vývojářem, jsem pracoval asi šest let jako business analytik, což mi poskytuje přehled ve vývoje softwaru a agilních metodikách i schopnost vidět produkt očima zákazníku i uživatele. Jsem schopen dobře pracovat v týpu a rád dělám s lidmi z různých prostředí.',
     },
     contactForm: {
       name: 'Jméno',

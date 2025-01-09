@@ -27,7 +27,12 @@ interface TranslationsProviderProps {
 export default function TranslationsProvider({
   children,
 }: TranslationsProviderProps) {
-  const [language, setLanguage] = useState<LanguageEnum>('en');
+  const userLanguage = navigator.language.split('-')[0];
+  const [language, setLanguage] = useState<LanguageEnum>(
+    userLanguage === 'en' || userLanguage === 'de' || userLanguage === 'cs'
+      ? userLanguage
+      : 'en'
+  );
 
   useEffect(() => {
     const savedLanguage = localStorage.getItem('language');
